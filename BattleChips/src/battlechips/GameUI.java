@@ -51,16 +51,12 @@ public class GameUI extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         jFrame1.setTitle("Settings");
-        jFrame1.setMaximumSize(new java.awt.Dimension(400, 300));
         jFrame1.setMinimumSize(new java.awt.Dimension(400, 300));
         jFrame1.setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(59, 174, 14));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Settings_img.png"))); // NOI18N
-        jLabel2.setMaximumSize(new java.awt.Dimension(175, 42));
-        jLabel2.setMinimumSize(new java.awt.Dimension(175, 42));
-        jLabel2.setPreferredSize(new java.awt.Dimension(175, 42));
 
         jLabel4.setFont(new java.awt.Font("Adobe Garamond Pro Bold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
