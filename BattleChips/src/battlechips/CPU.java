@@ -50,7 +50,11 @@ public class CPU extends Player
     
     public boolean ChecarBotão() //checa se é um botão, duh
     {
-        return super.getTable().VerificarBloco(x,y).getChipPiece().getTipo() == 1;
+        if (super.getTable().VerificarBloco(x,y).getChipPiece().getTipo() != 1)
+         return false;
+        else
+         return true;
+            
     }
     
       //verifica as casas ao redor, para ver se estão disponíveis, então atira em uma
@@ -211,20 +215,7 @@ public void CPUturn(Table adTable) // Método principal da classe CPU. Executa u
                 jogada = true;
             }
         }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    } 
 }   
 
 
