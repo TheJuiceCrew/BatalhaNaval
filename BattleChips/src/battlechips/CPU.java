@@ -21,6 +21,7 @@ public class CPU extends Player
     }
   
     //variáveis que vareiam
+    boolean AlreadyShot;
     int x,y;
     int aux1,aux2,aux3,aux4,aux = 0;
     Table tabuleiro;
@@ -119,7 +120,7 @@ public class CPU extends Player
     
    //tiro no chip = 1; tiro na água = 0;
     public boolean destroy(int x,int y,Table adTable)
-    {   boolean AlreadyShot = false;      
+    {   AlreadyShot = false;      
         boolean acerto = false;
         
         if(y!=dificuldade.TABSIZE && AlreadyShot == false )
@@ -205,8 +206,11 @@ public void CPUturn(Table adTable) // Método principal da classe CPU. Executa u
             if (CPUauxTable[x][y] == 1 || jogada == false)
             {
                destroy(x,y,adTable);
-               if(CheckAround(x,y,adTable)==1);
-               adTable.Shoot(x,y);
+               if (AlreadyShot == false)
+               {
+                   if(CheckAround(x,y,adTable)==1);
+                   adTable.Shoot(x,y);
+               }
                jogada = true;
             }
             else if (jogada == false)
