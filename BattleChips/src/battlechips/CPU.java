@@ -120,44 +120,93 @@ public class CPU extends Player
     
    //tiro no chip = 1; tiro na água = 0;
     public boolean destroy(int x,int y,Table adTable)
-    {   AlreadyShot = false;      
+    {  
+        AlreadyShot = false;      
         boolean acerto = false;
         
-        if(y!=dificuldade.TABSIZE && AlreadyShot == false )
+        if(y!=dificuldade.TABSIZE && AlreadyShot == false)
         {
-        if (CPUauxTable[x][y+1] == 1 && y!= 0)
+        if (y!= 0 && CPUauxTable[x][y+1] == 1 && CPUauxTable[x][y-1] != 0 )
         {
             acerto = adTable.Shoot(x,y-1);
              
             if (acerto == true)
             {
                 CPUauxTable[x][y-1] = 1;
-                y--;
                 AlreadyShot = true;
             }    
             else
-                CPUauxTable[x][y-1] = 0;
-                AlreadyShot = true;
-        }
-        }
-        if(y!=0 && AlreadyShot == false)
-        {
-            if (CPUauxTable[x][y-1] == 1 && y!= dificuldade.TABSIZE)
-
-        {
-            acerto = adTable.Shoot(x, y+1);
-            if(acerto == true)
             {
-                CPUauxTable[x][y+1] = 1;
+                CPUauxTable[x][y-1] = 0;
+                AlreadyShot = true;  
+            }   
+        }
+       
+        
+        else if(CPUauxTable[x][y+1] == 1 && CPUauxTable[x][y-1] == 0 && CPUauxTable[x][y+1] != 0)
+            {
+                while(CPUauxTable[x][y+1]==1)
+                {
+                    y++;
+                }
+            
+                acerto = adTable.Shoot(x,y+1);
+             
+            if (acerto == true)
+            {
+                CPUauxTable[x][y+2] = 1;
                 y++;
                 AlreadyShot = true;
+            }    
+           
             }
-            else
-                CPUauxTable[x][y+1] = 0;
+        else if (CPUauxTable[x][y+1] == 0 && CPUauxTable[x][y-1] == 0)
+        {
+            if(x!=dificuldade.TABSIZE && AlreadyShot == false)
+        {
+        if (y!= 0 && CPUauxTable[x+1][y] == 1 && CPUauxTable[x-1][y] != 0 )
+        {
+            acerto = adTable.Shoot(x-1,y);
+             
+            if (acerto == true)
+            {
+                CPUauxTable[x-1][y] = 1;
                 AlreadyShot = true;
+            }    
+            else
+            {
+                CPUauxTable[x-1][y] = 0;
+                AlreadyShot = true;  
+            }   
         }
+       
+        
+        else if(CPUauxTable[x+1][y] == 1 && CPUauxTable[x-1][y] == 0 && CPUauxTable[x+1][y] != 0)
+            {
+                while(CPUauxTable[x+1][y]==1)
+                {
+                    x++;
+                }
+            
+                acerto = adTable.Shoot(x+1,y);
+             
+            if (acerto == true)
+            {
+                CPUauxTable[x+2][y] = 1;
+                x++;
+                AlreadyShot = true;
+            }    
+           
+            }
         }
-        if(x!=dificuldade.TABSIZE && AlreadyShot == false)
+            
+        }    
+    }
+        return acerto;
+    }
+       // Resto do antigo código, caso seja preciso mudar algo 
+      
+    /*    if(x!=dificuldade.TABSIZE && AlreadyShot == false)
         {
             if (CPUauxTable[x+1][y] == 1 && x!= 0)
             {
@@ -173,25 +222,9 @@ public class CPU extends Player
                 AlreadyShot = true;
             }
         }
-        if(x!=0 && AlreadyShot == false)
-        {
-         if (CPUauxTable[x-1][y] == 1 && x!= dificuldade.TABSIZE)
-        {
-            acerto = adTable.Shoot(x-1, y);
-            if (acerto == true)
-            {
-                CPUauxTable[x+1][y] = 1;
-                x--;
-                AlreadyShot = true;
-            }
-            else
-                CPUauxTable[x+1][y] = 0;
-                AlreadyShot = true;
-        }
-        }
+      */
          
-        return acerto;
-    }
+        
 
 
        
@@ -205,13 +238,13 @@ public void CPUturn(Table adTable) // Método principal da classe CPU. Executa u
            
             if (CPUauxTable[x][y] == 1 || jogada == false)
             {
-               destroy(x,y,adTable);
-               if (AlreadyShot == false)
+               while (destroy(x,y,adTable)==true || AlreadyShot == false)
                {
+               
                    if(CheckAround(x,y,adTable)==1);
                    adTable.Shoot(x,y);
-               }
-               jogada = true;
+                   jogada = true;
+            }
             }
             else if (jogada == false)
             {
