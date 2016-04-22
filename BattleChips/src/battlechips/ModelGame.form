@@ -6,13 +6,54 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Game"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="New Game"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Return to Main Menu"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Exit"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu4">
+        <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Config"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volume"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Help"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Help Contents"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="About"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
@@ -164,12 +205,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="9" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel16" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel17" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="9" pref="11" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel15" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel16" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel17" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel18" linkSize="1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -192,15 +235,6 @@
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/CPUart.png"/>
-                </Property>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[50, 50]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[50, 50]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
             </Component>
@@ -484,11 +518,13 @@
                   <Component id="jLabel6" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
