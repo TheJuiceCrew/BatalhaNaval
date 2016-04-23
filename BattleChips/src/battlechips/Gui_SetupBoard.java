@@ -5,7 +5,11 @@
  */
 package battlechips;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.net.URL;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -54,12 +58,14 @@ public class Gui_SetupBoard extends JFrame  {
     private JButton salvar;
     private JButton IniciarJogo;
     
+    private GameStarter GameSt;
+    
             
     //CONSTRUTOR        
-    public Gui_SetupBoard (Game_controler jogo) {
+    public Gui_SetupBoard (GameStarter game) {
         
-        
-        this.jogo = jogo;
+        GameSt = game;
+        this.jogo = game.GetGameControler();
         OrientationSet = 1;
         TipoChipSet = 0;
         Dificuldade = jogo.getDificuldade();
@@ -76,7 +82,16 @@ public class Gui_SetupBoard extends JFrame  {
     
     
     //inicia o componente
-    private void InitComponents() {
+    public void InitComponents() {
+        
+        URL url = this.getClass().getResource("/resources/CPUart.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+         this.setIconImage(imagemTitulo);
+         
+         setLocationRelativeTo(null);
+         
+         
+         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
      
         //painel principal criação
@@ -189,6 +204,9 @@ public class Gui_SetupBoard extends JFrame  {
         imgMicro.add(Micro4);
         
         
+        
+        
+        
         //deninição de objeto Listener para cada botão 
         java.awt.event.MouseListener chipBotListener = new java.awt.event.MouseListener() {
 
@@ -268,6 +286,7 @@ public class Gui_SetupBoard extends JFrame  {
         });
  
         
+        
         IniciarJogo = new JButton();
         IniciarJogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Button_StartGame.png"))); // NOI18N
         IniciarJogo.setText("jButton1");
@@ -344,7 +363,7 @@ public class Gui_SetupBoard extends JFrame  {
        
        
        
-       
+       GameSt.jProgressBar1.setValue(60);
        
        
         //definição layout painel principal
@@ -445,6 +464,8 @@ public class Gui_SetupBoard extends JFrame  {
                             .addComponent(IniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
         );
+        
+        //GameSt.jProgressBar1.setValue(70);
         
         setResizable(false);
         
@@ -811,9 +832,9 @@ public class Gui_SetupBoard extends JFrame  {
         
         jogo.CPUPosicionarChips();
         jogo.IiciarJogo();
-        setVisible(false);
-        Gui_GamePlay jog = new Gui_GamePlay(jogo);
-         jog.setVisible(true);
+        
+        GameSt.SetGamePlay();
+        GameSt.Alternar();
         
     }
     

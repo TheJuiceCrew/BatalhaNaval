@@ -22,6 +22,7 @@ public class Player {
     
     protected Dificuldade dificuldade;
     private int acertos;
+    private int erros;
     private int jogadas;
     
     
@@ -44,7 +45,10 @@ public class Player {
         boolean acerto = adTable.Shoot(x, y);
         
         if (acerto) {
-            pontos++;
+            pontos = pontos+10;
+            acertos++;
+        } else {
+            erros++;      
         }
         
         return acerto;

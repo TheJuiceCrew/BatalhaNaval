@@ -46,6 +46,8 @@ public class Gui_TableBlock extends javax.swing.JButton {
     public void initComponent() {
         
         
+        
+        
         //inicia as imagens de icone
         Icons[0][0] = new javax.swing.ImageIcon(getClass().getResource("/resources/Default_BackgroundTile_final.png"));
         Icons[0][1] = new javax.swing.ImageIcon(getClass().getResource("/resources/released-but.png"));

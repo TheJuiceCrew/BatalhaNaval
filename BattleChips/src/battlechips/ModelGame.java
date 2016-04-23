@@ -39,9 +39,9 @@ public class ModelGame extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        painelAdversario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        PainelUsiuario = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -185,15 +185,15 @@ public class ModelGame extends javax.swing.JFrame {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel15, jLabel16, jLabel17, jLabel18});
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel7.setMaximumSize(new java.awt.Dimension(450, 450));
-        jPanel7.setMinimumSize(new java.awt.Dimension(450, 450));
-        jPanel7.setPreferredSize(new java.awt.Dimension(450, 450));
+        painelAdversario.setBackground(new java.awt.Color(255, 255, 102));
+        painelAdversario.setMaximumSize(new java.awt.Dimension(450, 450));
+        painelAdversario.setMinimumSize(new java.awt.Dimension(450, 450));
+        painelAdversario.setPreferredSize(new java.awt.Dimension(450, 450));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/justTestbig.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(painelAdversario);
+        painelAdversario.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,16 +203,16 @@ public class ModelGame extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 102));
-        jPanel8.setMaximumSize(new java.awt.Dimension(225, 225));
-        jPanel8.setMinimumSize(new java.awt.Dimension(225, 225));
-        jPanel8.setName(""); // NOI18N
-        jPanel8.setPreferredSize(new java.awt.Dimension(225, 225));
+        PainelUsiuario.setBackground(new java.awt.Color(255, 255, 102));
+        PainelUsiuario.setMaximumSize(new java.awt.Dimension(225, 225));
+        PainelUsiuario.setMinimumSize(new java.awt.Dimension(225, 225));
+        PainelUsiuario.setName(""); // NOI18N
+        PainelUsiuario.setPreferredSize(new java.awt.Dimension(225, 225));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/justTestsmall.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(PainelUsiuario);
+        PainelUsiuario.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -341,9 +341,9 @@ public class ModelGame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PainelUsiuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -352,8 +352,8 @@ public class ModelGame extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(painelAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PainelUsiuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1))
@@ -478,7 +478,7 @@ public class ModelGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel painelAdversario;
+    private javax.swing.JPanel PainelUsiuario;
     // End of variables declaration//GEN-END:variables
 }

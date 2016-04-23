@@ -13,51 +13,46 @@ package battlechips;
  */
 public class GameStarter {
     
-    private boolean mainMenu;
-    private boolean setup;
-    private boolean newGame;
-    private boolean ExitGame;
-    private boolean Load;
-    
-    
-    private Gui_MainMenu GuiMainMenu;
-    private Gui_SetupBoard GuiSetupBoard;
-    private Gui_TableBlock GuiTableBlock;
+               
     
     
     
-    public GameStarter() {
+    
+    public boolean mainMenu;
+    public boolean setup;
+    public boolean StartGame;
+    public boolean newGame;
+    public boolean ExitGame;
+    public boolean Load;
+    public boolean GameStarted;
+    
+    public javax.swing.JProgressBar jProgressBar1;
+    
+    private Game_controler game;
+    private BattleChips B;
+    
+    
+    
+    public GameStarter(BattleChips c) {
+        B=c;
+       SetGameControler(new Game_controler(new Normal()));
        ExitGame=false;
        mainMenu=false;
        setup=false;
-       
+       Load = true;
        
     }
     
+    public void Alternar () {
+        B.Alternar();
+    }
     
+    public void SetGameControler(Game_controler game) {
+        this.game=game;
+    }
     
-    
-    public void IniciarJogo () {
-        
-        
-        Load = true;
-        
-        
-        while (ExitGame==false) {
-            
-            
-            if (Load) Load();
-            
-            if (mainMenu) 
-            
-            if (setup) ShowSetup();
-              
-            
-            
-            
-            
-        }
-       
+    public Game_controler GetGameControler() {
+      return game;   
     }
     
     
@@ -67,33 +62,52 @@ public class GameStarter {
     mainMenu = false;
     setup = false;
     newGame = false;
+    StartGame = false;
     ExitGame = true;
+    
         
+    }
+    
+    public void SetLoad() {
+    mainMenu = false;
+    StartGame = false;
+    setup =  false;
+    Load=true;
+    newGame = false;
+    ExitGame = false;
+    }
+    
+    
+    public void SetMainMenu() {
+    mainMenu = true;
+    StartGame = false;
+    setup =  false;
+    newGame = false;
+    ExitGame = false;
     }
     
     public void SetSetup() {
-         mainMenu = false;
-         setup =  true;
-         newGame = false;
-         ExitGame = false;
+        System.out.println("Starting Setup");    
+    mainMenu = false;
+    StartGame = false;
+    setup =  true;
+    newGame = false;
+    ExitGame = false;
     }
     
-    private void Load() {
-        
+    public void SetGamePlay() {
+    mainMenu = false;
+    setup =  false;
+    newGame = false;
+    ExitGame = false;
+    StartGame = true;
     }
     
-    private void ShowMenu() {
-        
-    }
     
-    private Void ShowSetup() {
-        
-    }
     
-    private void ShowGame() {
-        
-    }
     
     
     
 }
+
+

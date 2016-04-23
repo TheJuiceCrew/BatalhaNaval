@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package battlechips;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 /**
@@ -47,6 +51,14 @@ public class Gui_GamePlay extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel nbotaoUsu;
+    private javax.swing.JLabel nResistUsu;
+    private javax.swing.JLabel nDecodUsu;
+    private javax.swing.JLabel nMicroUsu;
+    private javax.swing.JLabel nbotaoCpu;
+    private javax.swing.JLabel nResistCpu;
+    private javax.swing.JLabel nDecodCpu;
+    private javax.swing.JLabel nMicroCpu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -58,16 +70,41 @@ public class Gui_GamePlay extends JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel infoUsuario;
+    private javax.swing.JPanel infoCPU;
     private javax.swing.JPanel PainelAdversario;
     private javax.swing.JPanel PaunelUsuario;
+    private javax.swing.JPanel imgBotoaoCpu;
+    private javax.swing.JPanel imgResistCpu;
+    private javax.swing.JPanel imgDecodCpu;
+    private javax.swing.JPanel imgMicroCpu;
+    private javax.swing.JPanel imgbotaoPlayer;
+    private javax.swing.JPanel imgResistPlayer;
+    private javax.swing.JPanel imgDecodPlayer;
+    private javax.swing.JPanel imgMicroPlayer;
+    private javax.swing.JLabel x1,x2,x3,x4,x5,x6;
+    
+    GameStarter GameSt;
     
     
     
+    @Override
+    public void setVisible (boolean a) {
+        
+        super.setVisible(a);
+        updateTables();
+        
+        
+    }
     
-    public Gui_GamePlay (Game_controler game) {
-        jogo = game;
+    public Gui_GamePlay (GameStarter game) {
+        
+        URL url = this.getClass().getResource("/resources/CPUart.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+         this.setIconImage(imagemTitulo);
+        
+        GameSt = game;
+        this.jogo = game.GetGameControler();
         
         Dificuldade = jogo.getDificuldade();
         int a,b;
@@ -76,8 +113,8 @@ public class Gui_GamePlay extends JFrame {
         a = 30;
         b = 20; 
         } else if (Dificuldade.DIFICULDADE == 2) {
-        a = 35;
-        b = 25; 
+        a = 37;
+        b = 37; 
         } else {
         a = 37;
         b = 37; 
@@ -88,7 +125,8 @@ public class Gui_GamePlay extends JFrame {
         
         casasJog = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
         casasAdv = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
-        initComponents ();
+        
+        
     }
     
     
@@ -97,11 +135,15 @@ public class Gui_GamePlay extends JFrame {
     
     
     
-    private void initComponents () {
+    public void InitComponents () {
+        
+        
+        setLocationRelativeTo(null);
+        
         
         //inicialização de variaveis
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        infoCPU = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -116,7 +158,7 @@ public class Gui_GamePlay extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         PaunelUsuario = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
+        infoUsuario = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -137,6 +179,32 @@ public class Gui_GamePlay extends JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        nbotaoUsu = new javax.swing.JLabel();
+        nResistUsu = new javax.swing.JLabel();
+        nDecodUsu = new javax.swing.JLabel();
+        nMicroUsu = new javax.swing.JLabel();
+        nbotaoCpu = new javax.swing.JLabel();
+        nResistCpu = new javax.swing.JLabel();
+        nDecodCpu = new javax.swing.JLabel();
+        nMicroCpu = new javax.swing.JLabel();
+        
+       imgBotoaoCpu = new javax.swing.JPanel();
+       imgResistCpu = new javax.swing.JPanel();
+       imgDecodCpu = new javax.swing.JPanel();
+       imgMicroCpu = new javax.swing.JPanel();
+       imgbotaoPlayer = new javax.swing.JPanel();
+       imgResistPlayer = new javax.swing.JPanel();
+       imgDecodPlayer = new javax.swing.JPanel();
+       imgMicroPlayer = new javax.swing.JPanel();
+       x1 = new javax.swing.JLabel();
+       x2 = new javax.swing.JLabel();
+       x3 = new javax.swing.JLabel();
+       x4 = new javax.swing.JLabel();
+       x5 = new javax.swing.JLabel();
+       x6 = new javax.swing.JLabel();
+        
+        
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
@@ -145,12 +213,12 @@ public class Gui_GamePlay extends JFrame {
 
         jPanel1.setBackground(new java.awt.Color(76, 175, 80));
 
-        jPanel2.setBackground(new java.awt.Color(46, 125, 50));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 81, 30)));
-        jPanel2.setMaximumSize(new java.awt.Dimension(793, 50));
-        jPanel2.setMinimumSize(new java.awt.Dimension(793, 50));
-        jPanel2.setName(""); // NOI18N
-        jPanel2.setPreferredSize(new java.awt.Dimension(793, 50));
+        infoCPU.setBackground(new java.awt.Color(46, 125, 50));
+        infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 81, 30)));
+        infoCPU.setMaximumSize(new java.awt.Dimension(793, 50));
+        infoCPU.setMinimumSize(new java.awt.Dimension(793, 50));
+        infoCPU.setName(""); // NOI18N
+        infoCPU.setPreferredSize(new java.awt.Dimension(793, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/CPUart.png"))); // NOI18N
 
@@ -204,8 +272,13 @@ public class Gui_GamePlay extends JFrame {
         jLabel22.setMinimumSize(new java.awt.Dimension(26, 15));
         jLabel22.setPreferredSize(new java.awt.Dimension(26, 15));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
+        
+        
+         GameSt.jProgressBar1.setValue(80);
+        
+        
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(infoCPU);
+        infoCPU.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -337,13 +410,13 @@ public class Gui_GamePlay extends JFrame {
 
          }       
         }
-        
+         GameSt.jProgressBar1.setValue(85);
 
-        jPanel12.setBackground(new java.awt.Color(129, 199, 132));
-        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel12.setMaximumSize(new java.awt.Dimension(793, 50));
-        jPanel12.setMinimumSize(new java.awt.Dimension(793, 50));
-        jPanel12.setName(""); // NOI18N
+        infoUsuario.setBackground(new java.awt.Color(129, 199, 132));
+        infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        infoUsuario.setMaximumSize(new java.awt.Dimension(793, 50));
+        infoUsuario.setMinimumSize(new java.awt.Dimension(793, 50));
+        infoUsuario.setName(""); // NOI18N
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usericon.png"))); // NOI18N
 
@@ -397,8 +470,10 @@ public class Gui_GamePlay extends JFrame {
         jLabel30.setMinimumSize(new java.awt.Dimension(26, 15));
         jLabel30.setPreferredSize(new java.awt.Dimension(26, 15));
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
+         GameSt.jProgressBar1.setValue(95);
+        
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(infoUsuario);
+        infoUsuario.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
@@ -452,8 +527,8 @@ public class Gui_GamePlay extends JFrame {
         jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE))
+                    .addComponent(infoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoCPU, javax.swing.GroupLayout.DEFAULT_SIZE, 803, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -464,15 +539,17 @@ public class Gui_GamePlay extends JFrame {
         );
         jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infoCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PainelAdversario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PaunelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(infoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1))
         );
+        
+         GameSt.jProgressBar1.setValue(98);
 
         jMenu3.setText("Game");
 
