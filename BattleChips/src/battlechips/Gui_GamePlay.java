@@ -28,26 +28,27 @@ public class Gui_GamePlay extends JFrame {
     
     
     
+    
     //componentes de interface
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel nCpuHits;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel nCpuMisses;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel nCpuChipsLeft;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel nCpuChipsDestroyed;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel nUserHits;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel nUserChipsLeft;
+    private javax.swing.JLabel nUserMisses;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel nUserChipsDestroyed;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -69,6 +70,8 @@ public class Gui_GamePlay extends JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel infoUsuario;
     private javax.swing.JPanel infoCPU;
@@ -93,7 +96,7 @@ public class Gui_GamePlay extends JFrame {
         
         super.setVisible(a);
         updateTables();
-        
+        jogo.IiciarJogo();       
         
     }
     
@@ -147,13 +150,13 @@ public class Gui_GamePlay extends JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        nCpuHits = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        nCpuMisses = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        nCpuChipsLeft = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        nCpuChipsDestroyed = new javax.swing.JLabel();
         PainelAdversario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PaunelUsuario = new javax.swing.JPanel();
@@ -163,12 +166,12 @@ public class Gui_GamePlay extends JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        nUserHits = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        nUserChipsLeft = new javax.swing.JLabel();
+        nUserMisses = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
+        nUserChipsDestroyed = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -179,6 +182,8 @@ public class Gui_GamePlay extends JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         nbotaoUsu = new javax.swing.JLabel();
         nResistUsu = new javax.swing.JLabel();
         nDecodUsu = new javax.swing.JLabel();
@@ -230,11 +235,11 @@ public class Gui_GamePlay extends JFrame {
         jLabel15.setMinimumSize(new java.awt.Dimension(26, 17));
         jLabel15.setPreferredSize(new java.awt.Dimension(26, 17));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("00");
-        jLabel16.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel16.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel16.setPreferredSize(new java.awt.Dimension(26, 15));
+        nCpuHits.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nCpuHits.setText("00");
+        nCpuHits.setMaximumSize(new java.awt.Dimension(26, 15));
+        nCpuHits.setMinimumSize(new java.awt.Dimension(26, 15));
+        nCpuHits.setPreferredSize(new java.awt.Dimension(26, 15));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("MISSES:");
@@ -242,11 +247,11 @@ public class Gui_GamePlay extends JFrame {
         jLabel17.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel18.setText("00");
-        jLabel18.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel18.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel18.setPreferredSize(new java.awt.Dimension(26, 15));
+        nCpuMisses.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nCpuMisses.setText("00");
+        nCpuMisses.setMaximumSize(new java.awt.Dimension(26, 15));
+        nCpuMisses.setMinimumSize(new java.awt.Dimension(26, 15));
+        nCpuMisses.setPreferredSize(new java.awt.Dimension(26, 15));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("CHIPS DESTROYED:");
@@ -254,11 +259,11 @@ public class Gui_GamePlay extends JFrame {
         jLabel19.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel19.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel20.setText("00");
-        jLabel20.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel20.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel20.setPreferredSize(new java.awt.Dimension(26, 15));
+        nCpuChipsLeft.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nCpuChipsLeft.setText("00");
+        nCpuChipsLeft.setMaximumSize(new java.awt.Dimension(26, 15));
+        nCpuChipsLeft.setMinimumSize(new java.awt.Dimension(26, 15));
+        nCpuChipsLeft.setPreferredSize(new java.awt.Dimension(26, 15));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel21.setText("CHIPS LEFT:");
@@ -266,11 +271,11 @@ public class Gui_GamePlay extends JFrame {
         jLabel21.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel21.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel22.setText("00");
-        jLabel22.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel22.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel22.setPreferredSize(new java.awt.Dimension(26, 15));
+        nCpuChipsDestroyed.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nCpuChipsDestroyed.setText("00");
+        nCpuChipsDestroyed.setMaximumSize(new java.awt.Dimension(26, 15));
+        nCpuChipsDestroyed.setMinimumSize(new java.awt.Dimension(26, 15));
+        nCpuChipsDestroyed.setPreferredSize(new java.awt.Dimension(26, 15));
 
         
         
@@ -279,8 +284,7 @@ public class Gui_GamePlay extends JFrame {
         
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(infoCPU);
         infoCPU.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
@@ -291,45 +295,44 @@ public class Gui_GamePlay extends JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nCpuHits, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nCpuMisses, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nCpuChipsLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)    
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nCpuChipsDestroyed, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(72, 72, 72))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(9, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nCpuHits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nCpuMisses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nCpuChipsDestroyed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nCpuChipsLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel15, jLabel16, jLabel17, jLabel18});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel15, nCpuHits, jLabel17, nCpuMisses});
         
         PainelAdversario.setBackground(new java.awt.Color(255, 255, 102));
         java.awt.Dimension d = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*BlockSize)+5, (jogo.getDificuldade().TABSIZE*BlockSize)+5);
@@ -434,11 +437,11 @@ public class Gui_GamePlay extends JFrame {
         jLabel24.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel24.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel25.setText("00");
-        jLabel25.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel25.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel25.setPreferredSize(new java.awt.Dimension(26, 15));
+        nUserHits.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nUserHits.setText("00");
+        nUserHits.setMaximumSize(new java.awt.Dimension(26, 15));
+        nUserHits.setMinimumSize(new java.awt.Dimension(26, 15));
+        nUserHits.setPreferredSize(new java.awt.Dimension(26, 15));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel26.setText("MISSES:");
@@ -446,17 +449,17 @@ public class Gui_GamePlay extends JFrame {
         jLabel26.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel26.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel27.setText("00");
-        jLabel27.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel27.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel27.setPreferredSize(new java.awt.Dimension(26, 15));
+        nUserChipsLeft.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nUserChipsLeft.setText("00");
+        nUserChipsLeft.setMaximumSize(new java.awt.Dimension(26, 15));
+        nUserChipsLeft.setMinimumSize(new java.awt.Dimension(26, 15));
+        nUserChipsLeft.setPreferredSize(new java.awt.Dimension(26, 15));
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel28.setText("00");
-        jLabel28.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel28.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel28.setPreferredSize(new java.awt.Dimension(26, 15));
+        nUserMisses.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nUserMisses.setText("00");
+        nUserMisses.setMaximumSize(new java.awt.Dimension(26, 15));
+        nUserMisses.setMinimumSize(new java.awt.Dimension(26, 15));
+        nUserMisses.setPreferredSize(new java.awt.Dimension(26, 15));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel29.setText("CHIPS DESTROYED:");
@@ -464,45 +467,43 @@ public class Gui_GamePlay extends JFrame {
         jLabel29.setMinimumSize(new java.awt.Dimension(24, 15));
         jLabel29.setPreferredSize(new java.awt.Dimension(24, 15));
 
-        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel30.setText("00");
-        jLabel30.setMaximumSize(new java.awt.Dimension(26, 15));
-        jLabel30.setMinimumSize(new java.awt.Dimension(26, 15));
-        jLabel30.setPreferredSize(new java.awt.Dimension(26, 15));
+        nUserChipsDestroyed.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nUserChipsDestroyed.setText("00");
+        nUserChipsDestroyed.setMaximumSize(new java.awt.Dimension(26, 15));
+        nUserChipsDestroyed.setMinimumSize(new java.awt.Dimension(26, 15));
+        nUserChipsDestroyed.setPreferredSize(new java.awt.Dimension(26, 15));
 
          GameSt.jProgressBar1.setValue(95);
         
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(infoUsuario);
         infoUsuario.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel12Layout.setHorizontalGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nUserHits, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(nUserMisses, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nUserChipsLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nUserChipsDestroyed, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addGap(32, 32, 32))
         );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel12Layout.setVerticalGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
@@ -510,15 +511,15 @@ public class Gui_GamePlay extends JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nUserHits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nUserMisses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nUserChipsLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nUserChipsDestroyed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -552,14 +553,52 @@ public class Gui_GamePlay extends JFrame {
          GameSt.jProgressBar1.setValue(98);
 
         jMenu3.setText("Game");
+        
+        jMenuItem9.setText("Restart");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                jogo.RestartGame();
+                updateTables();
+                UpdatePlayerInfo();
+                jogo.IiciarJogo(); 
+            }
+        });
+        
+        jMenu3.add(jMenuItem9);
 
         jMenuItem1.setText("New Game");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                GameSt.NewGame();
+                GameSt.SetSetup();
+                GameSt.Alternar();
+                
+            }
+        });
         jMenu3.add(jMenuItem1);
 
         jMenuItem8.setText("Return to Main Menu");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameSt.SetMainMenu();
+                GameSt.NewGame();
+                GameSt.Alternar();
+            }
+        });
         jMenu3.add(jMenuItem8);
 
         jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameSt.ExitGame();
+                
+                GameSt.Alternar();
+                
+                
+            }
+        });
         jMenu3.add(jMenuItem2);
 
         jMenuBar2.add(jMenu3);
@@ -599,6 +638,7 @@ public class Gui_GamePlay extends JFrame {
         pack();
         
         updateTables();
+        UpdatePlayerInfo();
     }
     
     
@@ -615,6 +655,72 @@ public class Gui_GamePlay extends JFrame {
        }
    }
    
+    private void UpdateBlockUser (Gui_TableBlock B) {
+        //verifica qual o bloco esta alocado no tabuleiro
+        
+             
+             int x = B.getPosition(1);
+             int y = B.getPosition(2);
+             
+             
+             
+             Block b2 = jogo.GetPlayer(2).getTable().VerificarBloco(x, y);
+             
+            if (b2.getChipPiece()!=null) { 
+                  if (b2.IsShot()) {
+                 casasAdv[x-1][y-1].setIconChip(b2.getChipPiece().getTipo(),b2.getChipPiece().getOrient(),b2.getChipPiece().getpedaço());
+                 casasAdv[x-1][y-1].setPressedIcon(null);
+                  } else {
+                      casasAdv[x-1][y-1].setIconChip(0,0,1);
+                  }
+               }   else {
+                       if (b2.IsShot()) {
+                 casasAdv[x-1][y-1].setIconChip(0,0,3);
+                  } else   casasAdv[x-1][y-1].setIconChip(0,0,1);
+              } 
+            
+            
+                  
+             
+    }
+    
+    private void UpdateBlockCpu () {
+        int utimoTiro[] = jogo.GetPlayer(1).getTable().getLastShoot();
+             int x = utimoTiro[0];
+             int y = utimoTiro[1];
+             
+             
+                  Block b = jogo.GetPlayer(1).getTable().VerificarBloco(x, y);
+              
+              
+               if (b.getChipPiece()!=null) { 
+                  casasJog[x-1][y-1].setIconChip(b.getChipPiece().getTipo(),b.getChipPiece().getOrient(),b.getChipPiece().getpedaço());
+                 if (b.IsShot()) {
+                     casasJog[x-1][y-1].setEnabled(false);
+                  } else {
+                      
+                  }
+               }   else {
+                       if (b.IsShot()) {
+                 casasJog[x-1][y-1].setIconChip(0,0,3);
+                  } else   casasJog[x-1][y-1].setIconChip(0,0,0);
+              }
+             
+    }
+    
+    private void UpdatePlayerInfo() {
+        
+        nUserHits.setText(""+jogo.GetPlayer(1).getAcertos());
+        nUserMisses.setText(""+jogo.GetPlayer(1).getErros());
+        nUserChipsDestroyed.setText(""+jogo.GetPlayer(1).getTable().chipsCrashed());
+        nUserChipsLeft.setText(""+(jogo.GetPlayer(1).getTable().getNChips()-jogo.GetPlayer(1).getTable().chipsCrashed()));
+        
+        nCpuHits.setText(""+jogo.GetPlayer(2).getAcertos());
+        nCpuMisses.setText(""+jogo.GetPlayer(2).getErros());
+        nCpuChipsDestroyed.setText(""+jogo.GetPlayer(2).getTable().chipsCrashed());
+        nCpuChipsLeft.setText(""+(jogo.GetPlayer(2).getTable().getNChips()-jogo.GetPlayer(2).getTable().chipsCrashed()));
+        
+    }
     
     private void updateTables() {
     
@@ -628,7 +734,8 @@ public class Gui_GamePlay extends JFrame {
              
               if (b.getChipPiece()!=null) { 
                   casasJog[i][j].setIconChip(b.getChipPiece().getTipo(),b.getChipPiece().getOrient(),b.getChipPiece().getpedaço());
-                 if (b.IsShot()) {
+                  casasJog[i][j].setEnabled(true);
+                  if (b.IsShot()) {
                      casasJog[i][j].setEnabled(false);
                   } else {
                       
@@ -674,14 +781,15 @@ public class Gui_GamePlay extends JFrame {
           if (!casa.IsShot()) { 
               
                   jogo.PlayerShoot(block.getPosition(1), block.getPosition(2));
-                  updateTables();
+                  UpdateBlockUser(block);
                   
-                  
+                  UpdatePlayerInfo();
+                          
                   CpuTime();
                   
                   jogo.CpuShoot(); 
                   
-                  
+                  UpdateBlockCpu();
                   
                   PlayerTime();
            

@@ -61,6 +61,10 @@ public class Gui_MainMenu extends JFrame {
          setLocationRelativeTo(null);
         
         jFrame1 = new javax.swing.JFrame();
+        jFrame1.setUndecorated(true);
+         
+         jFrame1.setLocationRelativeTo(null);
+        
         jFrame1.setVisible(false);
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();

@@ -78,7 +78,12 @@ public class GameStarter {
     }
     
     
+    public void NewGame() {
+        game.NewGame();
+    }
+    
     public void SetMainMenu() {
+      NewGame();
     mainMenu = true;
     StartGame = false;
     setup =  false;

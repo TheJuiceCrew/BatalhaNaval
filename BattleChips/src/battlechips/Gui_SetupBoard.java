@@ -34,6 +34,7 @@ public class Gui_SetupBoard extends JFrame  {
     private Dificuldade Dificuldade;
     private Chip ChipTemp;
     private Table tabAux;
+    int BlockSize;
     
     
     //itens de GUI
@@ -76,9 +77,49 @@ public class Gui_SetupBoard extends JFrame  {
         
         casas = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
         tabAux = new Table(Dificuldade);
+        
+        
+       int a;
+        
+        if (Dificuldade.DIFICULDADE == 3) {
+        a = 30;
+        
+        } else if (Dificuldade.DIFICULDADE == 2) {
+        a = 37;
+        
+        } else {
+        a = 40;
+        
+        }
+        
+        BlockSize = a;
+        
+        
+        
         InitComponents();
     
     }        
+    
+    
+    @Override
+    public void setVisible (boolean a) {
+        
+        jogo = GameSt.GetGameControler();
+        OrientationSet = 1;
+        TipoChipSet = 0;
+        Dificuldade = jogo.getDificuldade();
+        tabAux = new Table(Dificuldade);
+        TaplePaste();
+        updateButtons();
+        updateNums();
+        updateImgChips();
+        updateNumChipPanels();
+        UpdateTable();
+        TableEnabled(true);
+        
+        super.setVisible(a);
+        
+    }
     
     
     //inicia o componente
@@ -306,7 +347,7 @@ public class Gui_SetupBoard extends JFrame  {
         //criação tabuleiro
         tabuleiro = new JPanel();
         tabuleiro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        java.awt.Dimension d = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*30)+5, (jogo.getDificuldade().TABSIZE*30)+5);
+        java.awt.Dimension d = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*BlockSize)+5, (jogo.getDificuldade().TABSIZE*BlockSize)+5);
         tabuleiro.setSize(d);
         java.awt.GridLayout TabLayout = new java.awt.GridLayout(jogo.getDificuldade().TABSIZE,jogo.getDificuldade().TABSIZE);
         tabuleiro.setLayout(TabLayout);
@@ -347,7 +388,7 @@ public class Gui_SetupBoard extends JFrame  {
          //alterncanci de coluna
          for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
              
-             JButton b = casas[i][j] = new Gui_TableBlock(i+1,j+1,30);
+             JButton b = casas[i][j] = new Gui_TableBlock(i+1,j+1,BlockSize);
              b.addMouseListener(blockListener);
              tabuleiro.add(b);
 
@@ -482,6 +523,23 @@ public class Gui_SetupBoard extends JFrame  {
     //METODOS DE CONTROLE E ATUALIZAÇÃO
     
     
+    private void TaplePaste() {
+        
+        for (int i=0; i<jogo.GetPlayer(1).getTable().getNChips(); i++ ) {
+           Chip ChipMove = jogo.GetPlayer(1).getTable().getChip(i);
+           tabAux.InserirChip(ChipMove.getOrient(), 
+                   ChipMove.getPiece(0).getPosition(1), 
+                   ChipMove.getPiece(0).getPosition(2),
+                   ChipMove.getTipo());
+           
+           
+           
+           
+            
+             
+     }
+    }
+    
    
     
    //
@@ -510,6 +568,28 @@ public class Gui_SetupBoard extends JFrame  {
        }
   
    }
+   
+   
+   private void UpdateTable() {
+      
+        
+        
+        for (int i = 1; i<=Dificuldade.TABSIZE; i++) {
+         
+         for (int j = 1; j<=Dificuldade.TABSIZE; j++) {
+         
+            if (tabAux.VerificarBloco(i, j).getChipPiece()!=null) {
+                 ChipPiece chip = tabAux.VerificarBloco(i,j).getChipPiece();
+                 casas[i-1][j-1].setIconChip(chip.getTipo(),chip.getOrient(),chip.getpedaço());
+             } else {
+                 casas[i-1][j-1].setIconChip(0,0,0);
+             }
+         }
+             
+            
+        }
+    
+    }
    
    
    //atualiza o Grid de Blocos
@@ -813,14 +893,14 @@ public class Gui_SetupBoard extends JFrame  {
                    ChipMove.getPiece(0).getPosition(1), 
                    ChipMove.getPiece(0).getPosition(2),
                    ChipMove.getTipo());
-           
+          
            
            
            
             
              
      }
-         
+         jogo.setInicialState(tabAux);
          updateButtons();
          
        TableEnabled(false);  
@@ -831,7 +911,7 @@ public class Gui_SetupBoard extends JFrame  {
     private void iniciarJogoClicado (java.awt.event.ActionEvent evt) {
         
         jogo.CPUPosicionarChips();
-        jogo.IiciarJogo();
+        
         
         GameSt.SetGamePlay();
         GameSt.Alternar();

@@ -384,6 +384,7 @@ public void CPUturn(Table advTable) // Método principal da classe CPU. Executa 
              
             boolean Hit = SideShoot();
             if (Hit==true) {
+                jogada=true;
                 if (adTable.VerificarBloco(x, y).getChipPiece().getChip().checkCrached()) {
                     System.out.println("É um resistor");
                     //é um resistor
@@ -417,6 +418,7 @@ public void CPUturn(Table advTable) // Método principal da classe CPU. Executa 
             //outro tiro aleatorio
             boolean Hit=hunt(DificultyLevel);
             if (Hit==true) {
+                jogada=true;
                 NumConssecHits++;
                 
             }
@@ -431,6 +433,7 @@ public void CPUturn(Table advTable) // Método principal da classe CPU. Executa 
             //tiro aleatorio
             Boolean Hit=hunt(DificultyLevel);
             if (Hit==true) {
+                jogada=true;
                 NumConssecHits++;
             }
     }
@@ -439,7 +442,10 @@ public void CPUturn(Table advTable) // Método principal da classe CPU. Executa 
 
     System.out.println("Numero consec de acertos" + NumConssecHits);
     
-    
+    jogadas++;
+    if (jogada) {
+        acertos++;
+    } else erros++;
     
     
     }

@@ -157,6 +157,8 @@ public class BattleChips extends JButton {
             
             
             
+        } else {
+            System.exit(0);
         }
         
         
@@ -232,7 +234,7 @@ public class BattleChips extends JButton {
         if (Loading!=null) {
             Loading.setVisible(false);
         }
-        
+        Loading=null;
         
         
         

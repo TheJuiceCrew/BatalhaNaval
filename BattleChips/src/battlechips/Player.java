@@ -21,9 +21,9 @@ public class Player {
     private Table TabJogador; //tabuleiro do jogador
     
     protected Dificuldade dificuldade;
-    private int acertos;
-    private int erros;
-    private int jogadas;
+    protected int acertos;
+    protected int erros;
+    protected int jogadas;
     
     
     
@@ -37,6 +37,19 @@ public class Player {
     
     public int getID() {
         return ID;
+    }
+    
+    
+    public int getAcertos() {
+        return acertos;
+    }
+    
+    public int getErros() {
+        return erros;
+    }
+    
+    public int getJogadas() {
+        return jogadas;
     }
     
     
@@ -58,6 +71,14 @@ public class Player {
     //pegar o tabuleiro do jogador (ele da pra todos, é publico)
     public Table getTable() {
         return this.TabJogador;
+    }
+    
+    public void newTable() {
+        TabJogador = new Table(dificuldade);
+        acertos=0;
+        erros=0;
+        jogadas=0;
+        pontos=0;
     }
     
     

@@ -14,6 +14,7 @@ public class Table {
     private final Dificuldade dificuldade;
     private int n_chips;
     private Player Jogador;
+    private int[] lastShoot = new int[2];
     
     
     public static final int VERTICAL = 2;
@@ -38,6 +39,11 @@ public class Table {
         
         //inicia o número de Chips para 0;
         n_chips = 0;
+    }
+    
+    
+    public int[] getLastShoot () {
+        return lastShoot;
     }
     
     
@@ -235,6 +241,10 @@ public class Table {
         else  
             {
                 VerificarBloco(x, y).setShot();
+                
+                lastShoot[0] = x;
+                lastShoot[1] = y;
+                
                 
                 return VerificarBloco(x, y).getChipPiece()!=null;
             }

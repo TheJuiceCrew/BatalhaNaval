@@ -20,6 +20,8 @@ public class Game_controler {
     private Player winner;
     private Dificuldade Dificuldade;
     boolean vez;
+    private Table InicialState;
+    
     
     
     public Game_controler(Dificuldade dif) {
@@ -34,6 +36,40 @@ public class Game_controler {
     
     public Dificuldade getDificuldade() {
         return Dificuldade;
+    }
+    
+    
+    public void RestartGame() {
+        
+        PartidaIniciada = false;
+        cpu.newTable();
+        jog1.newTable();
+        cpu.PosicionarChips();
+         for (int i=0; i<InicialState.getNChips(); i++ ) {
+           Chip ChipMove = InicialState.getChip(i);
+           jog1.getTable().InserirChip(ChipMove.getOrient(), 
+                   ChipMove.getPiece(0).getPosition(1), 
+                   ChipMove.getPiece(0).getPosition(2),
+                   ChipMove.getTipo());
+           
+           
+           
+           
+            
+             
+     }
+    }
+    
+    public void setInicialState (Table InicialTable) {
+        InicialState = InicialTable;
+    }
+    
+    
+    public void NewGame() {
+        jog1 = new Player(1,Dificuldade);
+        cpu = new CPU(2,Dificuldade);
+        PartidaIniciada = false;
+        
     }
     
     
