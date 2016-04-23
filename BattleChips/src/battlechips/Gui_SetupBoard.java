@@ -5,10 +5,7 @@
  */
 package battlechips;
 
-import java.awt.BorderLayout;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -450,11 +447,13 @@ public class Gui_SetupBoard extends JFrame  {
         );
         
         setResizable(false);
-        setVisible(true);
+        
         javax.swing.GroupLayout SetPosition_EasyLayout = new javax.swing.GroupLayout(getContentPane());
         setResizable(false);
         setContentPane(PainelPrincipal);
         updateButtons();
+        
+        //setVisible(true);
     }
     
     
@@ -582,6 +581,7 @@ public class Gui_SetupBoard extends JFrame  {
          for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
              
              JButton b = casas[i][j];
+             b.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
              b.setEnabled(enabled);
    
          }
@@ -812,6 +812,8 @@ public class Gui_SetupBoard extends JFrame  {
         jogo.CPUPosicionarChips();
         jogo.IiciarJogo();
         setVisible(false);
+        Gui_GamePlay jog = new Gui_GamePlay(jogo);
+         jog.setVisible(true);
         
     }
     

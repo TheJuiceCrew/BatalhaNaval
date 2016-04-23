@@ -38,7 +38,7 @@ public class CPU extends Player
     {
         super(id, dificuldade);
         this.tabuleiro = new Table(super.dificuldade);
-        DificultyLevel = 2;
+        this.DificultyLevel = dificuldade.DIFICULDADE +2;
         
     }
     

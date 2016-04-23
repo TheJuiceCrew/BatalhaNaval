@@ -1338,6 +1338,8 @@ public class GameUI extends javax.swing.JFrame {
         
         Jogo = new Game_controler(Dificuldade);
         Gui_SetupBoard setup = new Gui_SetupBoard(Jogo);
+        setup.setVisible(true);
+        
         
               
         

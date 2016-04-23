@@ -18,6 +18,10 @@ public class BattleChips {
     public static void main(String[] args) {
         // TODO code application logic here
        
+        
+         Game_controler game = new Game_controler(new Facil());
+         Gui_SetupBoard setup = new Gui_SetupBoard(game);
+         setup.setVisible(true);
          
         
         
@@ -42,7 +46,7 @@ public class BattleChips {
         
         
         
-        /*
+        
         Dificuldade d = new Facil();
         
                 Game_controler g = new Game_controler(d);
@@ -100,9 +104,9 @@ public class BattleChips {
             g.GetPlayer(1).getTable().imprimeStatus();
         
                 }
-        */
+        
    
-    
+    */
     
     }
     
