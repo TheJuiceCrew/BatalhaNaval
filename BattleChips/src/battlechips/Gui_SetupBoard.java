@@ -70,6 +70,7 @@ public class Gui_SetupBoard extends JFrame  {
         OrientationSet = 1;
         TipoChipSet = 0;
         Dificuldade = jogo.getDificuldade();
+        
         nButtonRest = Dificuldade.N_CHIP1;
         nResistRest = Dificuldade.N_CHIP2;
         nDecodRest = Dificuldade.N_CHIP3;
@@ -88,12 +89,11 @@ public class Gui_SetupBoard extends JFrame  {
         a = 37;
         
         } else {
-        a = 40;
+        a = 37;
         
         }
         
         BlockSize = a;
-        
         
         
         InitComponents();
@@ -104,6 +104,7 @@ public class Gui_SetupBoard extends JFrame  {
     @Override
     public void setVisible (boolean a) {
         
+        if (a==true) {
         jogo = GameSt.GetGameControler();
         OrientationSet = 1;
         TipoChipSet = 0;
@@ -116,6 +117,9 @@ public class Gui_SetupBoard extends JFrame  {
         updateNumChipPanels();
         UpdateTable();
         TableEnabled(true);
+        jogo.NewGame();
+        
+        }
         
         super.setVisible(a);
         
@@ -125,11 +129,15 @@ public class Gui_SetupBoard extends JFrame  {
     //inicia o componente
     public void InitComponents() {
         
+        
+        
+        
+        
         URL url = this.getClass().getResource("/resources/CPUart.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
          this.setIconImage(imagemTitulo);
          
-         setLocationRelativeTo(null);
+         setLocation(100,100);
          
          
          setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -574,15 +582,15 @@ public class Gui_SetupBoard extends JFrame  {
       
         
         
-        for (int i = 1; i<=Dificuldade.TABSIZE; i++) {
+        for (int i = 0; i<Dificuldade.TABSIZE; i++) {
          
-         for (int j = 1; j<=Dificuldade.TABSIZE; j++) {
+         for (int j = 0; j<Dificuldade.TABSIZE; j++) {
          
-            if (tabAux.VerificarBloco(i, j).getChipPiece()!=null) {
-                 ChipPiece chip = tabAux.VerificarBloco(i,j).getChipPiece();
-                 casas[i-1][j-1].setIconChip(chip.getTipo(),chip.getOrient(),chip.getpedaço());
+            if (tabAux.VerificarBloco(i+1, j+1).getChipPiece()!=null) {
+                 ChipPiece chip = tabAux.VerificarBloco(i+1,j+1).getChipPiece();
+                 casas[i][j].setIconChip(chip.getTipo(),chip.getOrient(),chip.getpedaço());
              } else {
-                 casas[i-1][j-1].setIconChip(0,0,0);
+                 casas[i][j].setIconChip(0,0,0);
              }
          }
              

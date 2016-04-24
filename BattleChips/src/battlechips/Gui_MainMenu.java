@@ -58,7 +58,7 @@ public class Gui_MainMenu extends JFrame {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
          this.setIconImage(imagemTitulo);
          
-         setLocationRelativeTo(null);
+         setLocation(100,100);
         
         jFrame1 = new javax.swing.JFrame();
         jFrame1.setUndecorated(true);
@@ -452,6 +452,7 @@ public class Gui_MainMenu extends JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
+        jFrame1.setLocation(100, 100);
         jFrame1.setVisible(false);
     }                                        
 

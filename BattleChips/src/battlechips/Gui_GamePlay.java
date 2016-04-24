@@ -6,6 +6,7 @@
 package battlechips;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.logging.Level;
@@ -13,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 /**
  *
  * @author berto
@@ -26,6 +28,10 @@ public class Gui_GamePlay extends JFrame {
     int BlockSize;
     int UserBlockSize;
     
+    boolean VezJogador;
+    boolean VezCpu;
+    int cont,x,y;
+    Gui_TableBlock temp;
     
     
     
@@ -86,7 +92,11 @@ public class Gui_GamePlay extends JFrame {
     private javax.swing.JPanel imgDecodPlayer;
     private javax.swing.JPanel imgMicroPlayer;
     private javax.swing.JLabel x1,x2,x3,x4,x5,x6;
+    private Timer CpuAnimationTimer;
     
+    
+    java.awt.event.MouseListener blockListener;
+    java.awt.event.ActionEvent turnListener;
     GameStarter GameSt;
     
     
@@ -94,9 +104,13 @@ public class Gui_GamePlay extends JFrame {
     @Override
     public void setVisible (boolean a) {
         
-        super.setVisible(a);
+        if (a) {
         updateTables();
-        jogo.IiciarJogo();       
+        VezJogador=true;
+        jogo.IiciarJogo(); 
+        }
+        
+        super.setVisible(a);
         
     }
     
@@ -130,6 +144,8 @@ public class Gui_GamePlay extends JFrame {
         casasAdv = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
         
         
+        
+        
     }
     
     
@@ -141,7 +157,7 @@ public class Gui_GamePlay extends JFrame {
     public void InitComponents () {
         
         
-        setLocationRelativeTo(null);
+        setLocation(100,100);
         
         
         //inicialização de variaveis
@@ -345,8 +361,10 @@ public class Gui_GamePlay extends JFrame {
         
         
         
+
+           
         
-        java.awt.event.MouseListener blockListener = new java.awt.event.MouseListener() {
+        blockListener = new java.awt.event.MouseListener() {
 
                  @Override
                  public void mouseClicked(MouseEvent e) {
@@ -360,21 +378,35 @@ public class Gui_GamePlay extends JFrame {
 
                  @Override
                  public void mouseReleased(MouseEvent e) {
-                     //do nothing
+                     BlockTableAdvReleased(e);
+                     
+                     
+        
                  }
 
                  @Override
                  public void mouseEntered(MouseEvent e) {
+                     BlockTableAdvEntered(e);
                      
                  }
 
                  @Override
                  public void mouseExited(MouseEvent e) {
+                     BlockTableAdvExited(e);
                      
                  }
              
              
              } ;
+        
+        
+        CpuAnimationTimer = new Timer(100, new java.awt.event.ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CpuTurn();
+            }           
+        });
         
         
         for (int i = 0; i<jogo.getDificuldade().TABSIZE; i++) {  
@@ -566,6 +598,20 @@ public class Gui_GamePlay extends JFrame {
         });
         
         jMenu3.add(jMenuItem9);
+        
+        jMenuItem10.setText("EditTable");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                
+                updateTables();
+                UpdatePlayerInfo();
+                GameSt.SetSetup();
+                GameSt.Alternar();   
+            }
+        });
+        
+        jMenu3.add(jMenuItem10);
 
         jMenuItem1.setText("New Game");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -648,6 +694,8 @@ public class Gui_GamePlay extends JFrame {
          for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
              
              JButton b = casasAdv[i][j];
+             if (enabled)  b.addMouseListener(blockListener);
+                     else b.removeMouseListener(blockListener);
              b.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
              b.setEnabled(enabled);
    
@@ -665,6 +713,7 @@ public class Gui_GamePlay extends JFrame {
              
              
              Block b2 = jogo.GetPlayer(2).getTable().VerificarBloco(x, y);
+             
              
             if (b2.getChipPiece()!=null) { 
                   if (b2.IsShot()) {
@@ -708,6 +757,123 @@ public class Gui_GamePlay extends JFrame {
              
     }
     
+    private void UpdateBlockCpu (Gui_TableBlock B) {
+        int x = B.getPosition(1);
+        int y = B.getPosition(2);
+             
+             
+                  Block b = jogo.GetPlayer(1).getTable().VerificarBloco(x, y);
+              
+              
+               if (b.getChipPiece()!=null) { 
+                  casasJog[x-1][y-1].setIconChip(b.getChipPiece().getTipo(),b.getChipPiece().getOrient(),b.getChipPiece().getpedaço());
+                 if (b.IsShot()) {
+                     casasJog[x-1][y-1].setEnabled(false);
+                  } else {
+                      
+                  }
+               }   else {
+                       if (b.IsShot()) {
+                 casasJog[x-1][y-1].setIconChip(0,0,3);
+                  } else   casasJog[x-1][y-1].setIconChip(0,0,0);
+              }
+             
+    }
+    
+    
+    
+    private void CpuTurn() {
+    
+        cont++;
+        
+        
+      if (cont<10) {
+        
+          if (cont==1) {
+        infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
+        
+        infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
+        
+        infoCPU.setSize(infoCPU.getWidth(),infoCPU.getHeight()+30);
+        x = jogo.GetPlayer(1).getTable().getRandomPosition();
+        y = jogo.GetPlayer(1).getTable().getRandomPosition();
+        temp = casasJog[x-1][y-1];
+          }
+        
+        
+        
+        
+            
+            
+                
+           
+           if (cont % 2==0) {
+               
+                x = jogo.GetPlayer(1).getTable().getRandomPosition();
+                y = jogo.GetPlayer(1).getTable().getRandomPosition();
+                temp = casasJog[x-1][y-1];
+                temp.setEnabled(true);
+                temp.setIconChip(0, 1, 1);
+           } else { 
+               
+               UpdateBlockCpu (temp);
+           }
+           
+       
+        
+      }else {
+          
+            
+        
+        if (cont==10) { 
+            CpuAnimationTimer.setDelay(CpuAnimationTimer.getDelay()/2);
+            jogo.CpuShoot();
+            
+            int utimoTiro[] = jogo.GetPlayer(1).getTable().getLastShoot();
+            x = utimoTiro[0];
+            y = utimoTiro[1];
+        }
+        
+        if (cont<30) {
+        
+        
+        
+        if (cont % 3==0) {
+                
+               temp = casasJog[x-1][y-1];
+                temp.setEnabled(true);
+                temp.setIconChip(0, 1, 1);
+           } else { 
+               UpdateBlockCpu (temp);
+           }
+        }
+        else {
+            CpuAnimationTimer.setDelay(CpuAnimationTimer.getInitialDelay());
+            updateTables();
+            cont=0;
+        CpuAnimationTimer.stop();
+        infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
+        
+        infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
+        
+        VezCpu=false;
+        VezJogador=true;
+              }
+        }
+    }
+    
+    
+    
+    
+    private void PlayerTurn() {
+        
+        
+        
+    }
+    
+    
+    
+    
     private void UpdatePlayerInfo() {
         
         nUserHits.setText(""+jogo.GetPlayer(1).getAcertos());
@@ -750,14 +916,20 @@ public class Gui_GamePlay extends JFrame {
               if (b2.getChipPiece()!=null) { 
                   if (b2.IsShot()) {
                  casasAdv[i][j].setIconChip(b2.getChipPiece().getTipo(),b2.getChipPiece().getOrient(),b2.getChipPiece().getpedaço());
-                 
+                 casasAdv[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
                   } else {
                       casasAdv[i][j].setIconChip(0,0,1);
+                      casasAdv[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
                   }
                }   else {
+                  
                        if (b2.IsShot()) {
                  casasAdv[i][j].setIconChip(0,0,3);
-                  } else   casasAdv[i][j].setIconChip(0,0,1);
+                 casasAdv[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                  } else   {
+                           casasAdv[i][j].setIconChip(0,0,1);
+                           casasAdv[i][j].setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                       }
               } 
          }
       }
@@ -775,43 +947,59 @@ public class Gui_GamePlay extends JFrame {
     }
     
     
+    private void BlockTableAdvReleased(java.awt.event.MouseEvent evt) {
+        
+        
+        
+        
+    }
+    
+    
     private void BlockTableAdvClicked(java.awt.event.MouseEvent evt) {
           Gui_TableBlock block = (Gui_TableBlock) evt.getSource();
+       if (!jogo.ChecarFimDeJogo()) {   
+          if (VezJogador==true) {
           Block casa = jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2));
           if (!casa.IsShot()) { 
               
                   jogo.PlayerShoot(block.getPosition(1), block.getPosition(2));
                   UpdateBlockUser(block);
-                  
                   UpdatePlayerInfo();
-                          
-                  CpuTime();
+                  CpuAnimationTimer.start();
                   
-                  jogo.CpuShoot(); 
+                  VezJogador=false;
                   
-                  UpdateBlockCpu();
-                  
-                  PlayerTime();
            
           }
-    
+          
+          }
+       }
     }
+    
+    
+    
+    
+    public void BlockTableAdvEntered(MouseEvent e) {
+         Gui_TableBlock block = (Gui_TableBlock) e.getSource();
+         Block casa = jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2));
+          if (!casa.IsShot()) { 
+          block.setIconChip(0, 1, 4);
+          
+          }
+    }
+                     
+    public void BlockTableAdvExited (MouseEvent e) {
+         Gui_TableBlock block = (Gui_TableBlock) e.getSource();
+          Block casa = jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2));
+          if (!casa.IsShot()) { 
+          block.setIconChip(0, 1, 1);
+          
+          }
+                    
+    }
+    
+    
+}
       
        
     
-private void CpuTime() {
-
-   userTableEnabled(false);
-   
-
-}
-
-
-private void PlayerTime() {
-    
-
-    userTableEnabled(true);
-}
-
-
-}

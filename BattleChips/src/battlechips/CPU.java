@@ -50,26 +50,39 @@ public class CPU extends Player
     }
     
     private boolean TemChip(int a,int b) {
-        return (adTable.VerificarBloco(a, b).getChipPiece()!=null);
+        boolean retorno = false;
+        if (!adTable.VerificarBloco(a, b).IsShot()) {
+                retorno =  (adTable.VerificarBloco(a, b).getChipPiece()!=null);
+        }
+        
+        return retorno;
     }
     
     private boolean hunt(int verifications)
     {
         boolean acerto = false;
+        boolean tiroFeito = false;
         
-        for (int i=0; i<verifications; i++) {
+        while (tiroFeito==false) {
+         for (int i=0; i<verifications; i++) {
             updateRandom(); 
             boolean check = TemChip(x,y);
             if (check==true) {
+                if (!adTable.VerificarBloco(x, y).IsShot()) tiroFeito=true;
                 acerto = adTable.Shoot(x,y);
                 break;
             }
         }
         
         if (acerto==false) {
+          
+            if (!adTable.VerificarBloco(x, y).IsShot()) tiroFeito=true;
             acerto = adTable.Shoot(x,y);
+            
         }
         
+        
+        }
         return acerto;
     }
     
@@ -77,15 +90,17 @@ public class CPU extends Player
         int a=0,b=0;
         int sort; 
         boolean tiroFeito=false;
-             
+        int cont=0;     
                    
-        while (tiroFeito==false) {      
+        while (tiroFeito==false) {    
+            cont++;
+            if (cont>10) break;
         sort = (int) ((Math.random() * (4))+1);
             System.out.println(sort);
         //sorteia uma das 4 direções para verificar
         
         switch (sort) {
-        
+           
             case 1: 
                 if (x!=dificuldade.TABSIZE) {
                 a=x+1; b=y;
@@ -125,7 +140,12 @@ public class CPU extends Player
         
         x=a;
         y=b;
-        return adTable.Shoot(a,b);
+        boolean retorno;
+        
+        if (tiroFeito==false) retorno = hunt(DificultyLevel);
+        else retorno = adTable.Shoot(a,b);
+        
+        return retorno;
           
     }
     

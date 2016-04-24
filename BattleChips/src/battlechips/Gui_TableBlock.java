@@ -53,6 +53,7 @@ public class Gui_TableBlock extends javax.swing.JButton {
         Icons[0][1] = new javax.swing.ImageIcon(getClass().getResource("/resources/released-but.png"));
         Icons[0][2] = new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png"));
         Icons[0][3] = new javax.swing.ImageIcon(getClass().getResource("/resources/missed-chip.png"));
+        Icons[0][4] = new javax.swing.ImageIcon(getClass().getResource("/resources/focus-but.png"));
         
         Icons[1][1] = new javax.swing.ImageIcon(getClass().getResource("/resources/Chip_button_final.png"));
         Icons[2][1] = new javax.swing.ImageIcon(getClass().getResource("/resources/Chip_Resistor_1_final.png"));
