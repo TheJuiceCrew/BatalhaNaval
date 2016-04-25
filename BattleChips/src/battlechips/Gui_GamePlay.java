@@ -416,7 +416,7 @@ public class Gui_GamePlay extends JFrame {
              Gui_TableBlock b = casasAdv[i][j] = new Gui_TableBlock(i+1,j+1,BlockSize);
              b.addMouseListener(blockListener);
              b.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
-             b.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
+             
              PainelAdversario.add(b);
 
          }       
@@ -696,14 +696,14 @@ public class Gui_GamePlay extends JFrame {
              JButton b = casasAdv[i][j];
              if (enabled)  b.addMouseListener(blockListener);
                      else b.removeMouseListener(blockListener);
-             b.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
+             b.setDisabledIcon(b.getIcon());
              b.setEnabled(enabled);
    
          }
        }
    }
    
-    private void UpdateBlockUser (Gui_TableBlock B) {
+    private void UpdateOneBlockUser (Gui_TableBlock B) {
         //verifica qual o bloco esta alocado no tabuleiro
         
              
@@ -733,7 +733,7 @@ public class Gui_GamePlay extends JFrame {
              
     }
     
-    private void UpdateBlockCpu () {
+    private void UpdateTableBlockCpu () {
         int utimoTiro[] = jogo.GetPlayer(1).getTable().getLastShoot();
              int x = utimoTiro[0];
              int y = utimoTiro[1];
@@ -757,7 +757,7 @@ public class Gui_GamePlay extends JFrame {
              
     }
     
-    private void UpdateBlockCpu (Gui_TableBlock B) {
+    private void UpdateOneBlockCpu (Gui_TableBlock B) {
         int x = B.getPosition(1);
         int y = B.getPosition(2);
              
@@ -790,6 +790,8 @@ public class Gui_GamePlay extends JFrame {
       if (cont<10) {
         
           if (cont==1) {
+        
+        userTableEnabled(false);
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
         
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
@@ -801,10 +803,6 @@ public class Gui_GamePlay extends JFrame {
           }
         
         
-        
-        
-            
-            
                 
            
            if (cont % 2==0) {
@@ -816,7 +814,7 @@ public class Gui_GamePlay extends JFrame {
                 temp.setIconChip(0, 1, 1);
            } else { 
                
-               UpdateBlockCpu (temp);
+               UpdateOneBlockCpu (temp);
            }
            
        
@@ -844,7 +842,7 @@ public class Gui_GamePlay extends JFrame {
                 temp.setEnabled(true);
                 temp.setIconChip(0, 1, 1);
            } else { 
-               UpdateBlockCpu (temp);
+               UpdateOneBlockCpu (temp);
            }
         }
         else {
@@ -853,7 +851,7 @@ public class Gui_GamePlay extends JFrame {
             cont=0;
         CpuAnimationTimer.stop();
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
-        
+        userTableEnabled(true);
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
         
         VezCpu=false;
@@ -886,6 +884,43 @@ public class Gui_GamePlay extends JFrame {
         nCpuChipsDestroyed.setText(""+jogo.GetPlayer(2).getTable().chipsCrashed());
         nCpuChipsLeft.setText(""+(jogo.GetPlayer(2).getTable().getNChips()-jogo.GetPlayer(2).getTable().chipsCrashed()));
         
+    }
+    
+    
+    private void RevealUserTableBlock() {
+        
+        for (int i = 0; i<jogo.getDificuldade().TABSIZE; i++) {  
+         //alterncanci de coluna
+         for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
+        
+        Block b = jogo.GetPlayer(2).getTable().VerificarBloco(i+1, j+1);
+        
+        if (b.getChipPiece()!=null) { 
+                  
+                  casasAdv[i][j].setIconChip(b.getChipPiece().getTipo(),b.getChipPiece().getOrient(),b.getChipPiece().getpedaço());
+                  casasAdv[i][j].setDisabledIcon(casasAdv[i][j].getIcon());
+                  casasAdv[i][j].setEnabled(false);
+                  if (b.IsShot()) {
+                     casasAdv[i][j].setEnabled(false);
+                  } else {
+                      
+                  }
+               }   else {
+            
+            casasAdv[i][j].setEnabled(false);
+                       if (b.IsShot()) {
+                 casasAdv[i][j].setIconChip(0,0,3);
+                 casasAdv[i][j].setDisabledIcon(casasAdv[i][j].getIcon());
+                  } else  {
+                           casasAdv[i][j].setIconChip(0,0,0);
+                           casasAdv[i][j].setDisabledIcon(casasAdv[i][j].getIcon());
+                       }
+              }
+    
+          }
+      }
+         
+         
     }
     
     private void updateTables() {
@@ -950,7 +985,10 @@ public class Gui_GamePlay extends JFrame {
     private void BlockTableAdvReleased(java.awt.event.MouseEvent evt) {
         
         
-        
+        if (jogo.ChecarFimDeJogo()) {
+             RevealUserTableBlock();
+             userTableEnabled(false);
+        }
         
     }
     
@@ -963,7 +1001,7 @@ public class Gui_GamePlay extends JFrame {
           if (!casa.IsShot()) { 
               
                   jogo.PlayerShoot(block.getPosition(1), block.getPosition(2));
-                  UpdateBlockUser(block);
+                  UpdateOneBlockUser(block);
                   UpdatePlayerInfo();
                   CpuAnimationTimer.start();
                   
