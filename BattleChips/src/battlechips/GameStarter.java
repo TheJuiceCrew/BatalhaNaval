@@ -6,7 +6,8 @@
 package battlechips;
 
 
-
+import java.applet.Applet;
+import java.applet.AudioClip;
 /**
  *
  * @author berto
@@ -26,11 +27,11 @@ public class GameStarter {
     public boolean Load;
     public boolean GameStarted;
     
-    public javax.swing.JProgressBar jProgressBar1;
     
     private Game_controler game;
     private BattleChips B;
-    
+    //private final AudioClip BotaoSom =  Applet.newAudioClip(GameStarter.class.getResource("/music1.mid"));
+	
     
     
     public GameStarter(BattleChips c) {

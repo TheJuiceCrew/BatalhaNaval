@@ -1,302 +1,186 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package battlechips;
-import java.awt.Dimension;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-/**
+
+/*
  *
  * @author paulo
+ * CLASSE BattleChips
+ * 
+ * é a Classe principal do jogo, possui o método auxiliar GameStarter
+ * para alternar entre as Telas do jogo.
+ * 
  */
-public class BattleChips extends JButton {
+
+public class BattleChips {
     
-    private GameStarter GameStarter;
+    
+    private GameStarter GameStarter; //instância de GameStarter
  
- // Variables declaration - do not modify                     
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JFrame Loading;
-    // End of variables declaration     
+                
+    private javax.swing.JLabel LogoTJC; //logotipo the juice Crew
+    private javax.swing.JProgressBar barraDeProgressLoading; //barra de progresso da tela de carregamento
+    private javax.swing.JFrame Loading; //Tela de Carregamento
+       
     
-    private Gui_MainMenu GuiMainMenu;
-    private Gui_SetupBoard GuiSetupBoard;
-    private Gui_GamePlay GuiGamePlay;
+    //Principais janelas do Jogo - todas são subclasses de JFrame
+    private Gui_MainMenu GuiMainMenu; // janela de menu principal
+    private Gui_SetupBoard GuiSetupBoard; //janela de montagem de placa
+    private Gui_GamePlay GuiGamePlay; //janela de jogo
     
     
     
     
-    /**
-     * @param args the command line arguments
-     */
-    
-    public BattleChips () {
+    //contrutor da classe principal;
+    public BattleChips () 
+    {
+        //cria um objeto do tipo GameStarter e envia uma referencia de BatleChips como argumento
+        GameStarter = new GameStarter(this);  
         
+        //cria os objetos de janelas
+        GuiMainMenu = new Gui_MainMenu(GameStarter);
+        GuiSetupBoard = new Gui_SetupBoard(GameStarter);
+        GuiGamePlay = new Gui_GamePlay(GameStarter);
         
-        
-        GameStarter = new GameStarter(this);
-        
-        
-        
-        
+        //cria objetos de interface
+        barraDeProgressLoading = new javax.swing.JProgressBar();
+        LogoTJC = new javax.swing.JLabel();
+        Loading = new javax.swing.JFrame();
         
     }
     
     
-    public static void main(String[] args) {
-        // TODO code application logic here
-       
+    //classe main do projeto
+    public static void main(String[] args) 
+    {
+        //cria um objeto Desta Classe
         BattleChips b = new BattleChips();
+        
+        //Executa o método Alternar, que atualiza das janelas de acordo com o estado
         b.Alternar();
          
-         
         
-        
-        
-        
-        
-        /* 
-        Table T = new Table(new Facil());
-        T.InserirChip(2, 2, 2, 4);
-        
-        T.InserirChip(1, 3, 5, 4);
-        
-        T.imprimeStatus();
-        
-        T.RemoveChip(3, 7);
-        
-        T.imprimeStatus();
-        
-        T.InserirChip(2, 2, 7, 4);
-        
-        T.imprimeStatus();
-        
-        
-        
-        
-        Dificuldade d = new Facil();
-        
-                Game_controler g = new Game_controler(d);
-        g.IiciarJogo();
-        
-        
-        Player p = g.GetPlayer(1);
-        
-        for (int i =1; i<=4; i++) {
-            
-        
-        while (!(p.getTable().getNichipsTipo(i)>=d.getNchipsTipo(i))) {
-            g.setChipPlayer(1,p.getTable().getRandomPosition(), p.getTable().getRandomPosition(), 
-                    p.getTable().getRandomOrientation(), i);
-        }
-        
-        }
-        
-       
-        
-        
-        g.IiciarJogo();
-      
-        
-         p = g.GetPlayer(2);
-         for (int i =1; i<=4; i++) {
-            
-        
-        while (!(p.getTable().getNichipsTipo(i)>=d.getNchipsTipo(i))) {
-            g.setChipPlayer(2,p.getTable().getRandomPosition(), p.getTable().getRandomPosition(), 
-                    p.getTable().getRandomOrientation(), i);
-        }
-        
-        }
-        
-        
-        
-        
-        g.IiciarJogo();
-        
-    
-        g.GetPlayer(2).getTable().imprimeStatus();
-        
-        Scanner s = new Scanner(System.in);
-        int x,y;
-        while (!g.ChecarFimDeJogo()) {
-            System.out.println("informe um valor para x e y");
-            int a = s.nextInt();
-            int b = s.nextInt();
-            g.PlayerShoot(a, b);
-            
-            g.CpuShoot();
-            
-            g.GetPlayer(2).getTable().imprimeStatus();
-            g.GetPlayer(1).getTable().imprimeStatus();
-        
-                }
-        
-   
-    */
-    
     }
     
     
-    
+    /*
+    * MÉTODO Alternar
+    * Verifica qual o estado do Jogo e alterna as Janelas do Jogo
+    */
     public void Alternar() {
         
+        //se a variavel de fim de jogo for falsa
         if (GameStarter.ExitGame==false) {
             
-            
+            //se o estado do jogo for para carregar os componentes - Inicia o metodo load()
             if (GameStarter.Load) Load();
             
+            //se o estado do jogo for para exibir o menu - executa o método ShowMenu();
             if (GameStarter.mainMenu) ShowMenu();
             
+            //se o estado do jogo for para exibir o Setup de placa - executa o método ShowSetup();
             if (GameStarter.setup) ShowSetup();
-              
+            
+             //se o estado do jogo for para iniciar o jogo - executa o método GamePlay();
             if (GameStarter.StartGame) ShowGamePlay();
             
             
             
-        } else {
+        } 
+        //senão (a variavel de fim de jogo é verdadeira)
+        else 
+        {
+            //Encerrar a aplicação
             System.exit(0);
         }
-        
-        
-        
-        }
+    }
     
     
-    
+    /*
+    * MÉTODO LOAD
+    * Carrega todos os componentes gráficos do jogo
+    */
     private void Load() {
         
-       
-            if (GuiMainMenu!=null) {
-                GuiMainMenu.setVisible(false);
-            }
-            
-            if (GuiSetupBoard!=null) {
-                GuiSetupBoard.setVisible(false);
-            }
-            
-            if (GuiGamePlay!=null) {
-                GuiGamePlay.setVisible(false);
-            }
+            //verifica se existem janelas abertas e fecha
+            if (GuiMainMenu.isVisible()) GuiMainMenu.setVisible(false);
+            if (GuiSetupBoard.isVisible()) GuiSetupBoard.setVisible(false);
+            if (GuiGamePlay.isVisible()) GuiSetupBoard.setVisible(false);
             
             
-            jProgressBar1 = new javax.swing.JProgressBar();
-            jLabel1 = new javax.swing.JLabel();
-            Loading = new javax.swing.JFrame();
-            GameStarter.jProgressBar1 = jProgressBar1;
-            jProgressBar1.setValue(0);
+            
+            
+            //seta a barra de prgressos para modo indeterminado de progresso
+            barraDeProgressLoading.setIndeterminate(true);
+            
+            //Configurações de layout da janela de loading
             Loading.setUndecorated(true);
-            
             Loading.setLocation(100,100);
             Loading.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            
             Loading.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-            Loading.getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 498, -1));
-            
-            jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo.png"))); // NOI18N
-            jLabel1.setText("jLabel1");
-            Loading.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 420));
-            
+            Loading.getContentPane().add(barraDeProgressLoading, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 498, -1));
+
+            LogoTJC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logo.png"))); 
+            Loading.getContentPane().add(LogoTJC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 420));
             Loading.pack();
-            
-            // if (!GameStarter.GameStarted) {
             Loading.setVisible(true);
-            //GameStarter.GameStarted = true;
-            // }
+
             
-            
-            jProgressBar1.setValue(5);
-             
-             
-            GuiMainMenu = new Gui_MainMenu(GameStarter);
-            GuiMainMenu.InitComponents();
-            
-            //jProgressBar1.setValue(50);
-            
-            GuiSetupBoard = new Gui_SetupBoard(GameStarter);
+            //inicia os componentes nas outras janelas do jogo
+            GuiMainMenu.InitComponents();      
             GuiSetupBoard.InitComponents();
-            
-            //jProgressBar1.setValue(75);
-            
-            GuiGamePlay = new Gui_GamePlay(GameStarter);
             GuiGamePlay.InitComponents();
             
             
-            //jProgressBar1.setValue(100);
+            //desativa o estado de load
             GameStarter.Load = false;
+            //ativa o estado para o menu principal
             GameStarter.SetMainMenu();
         
         
     }
     
+    //método que exibe a janela de menu
     private void ShowMenu() {
         
-        
-        if (Loading!=null) {
-            Loading.setVisible(false);
-        }
-        Loading=null;
-        
+        //verifica se existem janelas abertas e fecha
+        if (Loading.isVisible()) Loading.setVisible(false);
+        if (GuiSetupBoard.isVisible()) GuiSetupBoard.setVisible(false);
+        if (GuiGamePlay.isVisible()) GuiGamePlay.setVisible(false);
         
         
-        if (GuiSetupBoard!=null) {
-            GuiSetupBoard.setVisible(false);
-        }
-        
-        if (GuiGamePlay!=null) {
-            GuiGamePlay.setVisible(false);
-        }
-        
-        
-        
-        
+        //exibe a janela de menu
         GuiMainMenu.setVisible(true);
         GameStarter.mainMenu = false;
         
     }
     
+    //método de exibe a janela de setub
     private void ShowSetup() {
-        
-        System.out.println("Showing Setup ");  
-        
-        if (Loading!=null) {
-            Loading.setVisible(false);
-        }
- 
-        if (GuiMainMenu!=null) {
-            GuiMainMenu.setVisible(false);
-        }
-        
-        if (GuiGamePlay!=null) {
-            GuiGamePlay.setVisible(false);
-        }
-       
-        
+    
+        //verifica se existem janelas abertas e fecha
+        if (Loading.isVisible())  Loading.setVisible(false);
+        if (GuiMainMenu.isVisible())  GuiMainMenu.setVisible(false);
+        if (GuiGamePlay.isVisible())  GuiGamePlay.setVisible(false);
+    
+        //exibe a janela de setup
         GuiSetupBoard.setVisible(true);
         GameStarter.setup = false;
     
     }
     
     
-    
+    //metodo que exibe a janela de gamePlay
     private void ShowGamePlay() {
-        if (Loading!=null) {
-            Loading.setVisible(false);
-        }
- 
-        if (GuiMainMenu!=null) {
-            GuiMainMenu.setVisible(false);
-        }
         
-        if (GuiSetupBoard!=null) {
-            GuiSetupBoard.setVisible(false);
-        }
-       
-        
+        //verifica se existem janelas abertas e fecha
+        if (Loading.isVisible()) Loading.setVisible(false);
+        if (GuiMainMenu.isVisible()) GuiMainMenu.setVisible(false);
+        if (GuiSetupBoard.isVisible())  GuiSetupBoard.setVisible(false);
+   
+        //exibe a janela de gameplay
         GuiGamePlay.setVisible(true);
         GameStarter.StartGame = false;
         

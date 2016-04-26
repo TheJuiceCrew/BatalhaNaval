@@ -108,7 +108,7 @@ public class Gui_MainMenu extends JFrame {
             }
         });
         
-        gameSt.jProgressBar1.setValue(10);
+      
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Medium_Unselected.png"))); // NOI18N
         jButton5.setText("jButton1");
@@ -140,7 +140,7 @@ public class Gui_MainMenu extends JFrame {
             }
         });
         
-        gameSt.jProgressBar1.setValue(20);
+        
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Button_Salvar.png"))); // NOI18N
         jButton7.setText("jButton1");
@@ -172,7 +172,7 @@ public class Gui_MainMenu extends JFrame {
             }
         });
         
-        gameSt.jProgressBar1.setValue(30);
+        
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -214,7 +214,7 @@ public class Gui_MainMenu extends JFrame {
                 .addContainerGap())
         );
         
-        gameSt.jProgressBar1.setValue(40);
+       
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -295,8 +295,7 @@ public class Gui_MainMenu extends JFrame {
             }
         });
         
-        gameSt.jProgressBar1.setValue(45);
-
+     
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(

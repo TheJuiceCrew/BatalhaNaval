@@ -295,7 +295,7 @@ public class Gui_GamePlay extends JFrame {
 
         
         
-         GameSt.jProgressBar1.setValue(80);
+   
         
         
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(infoCPU);
@@ -445,7 +445,7 @@ public class Gui_GamePlay extends JFrame {
 
          }       
         }
-         GameSt.jProgressBar1.setValue(85);
+      
 
         infoUsuario.setBackground(new java.awt.Color(129, 199, 132));
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -505,7 +505,7 @@ public class Gui_GamePlay extends JFrame {
         nUserChipsDestroyed.setMinimumSize(new java.awt.Dimension(26, 15));
         nUserChipsDestroyed.setPreferredSize(new java.awt.Dimension(26, 15));
 
-         GameSt.jProgressBar1.setValue(95);
+   
         
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(infoUsuario);
         infoUsuario.setLayout(jPanel12Layout);
@@ -582,8 +582,7 @@ public class Gui_GamePlay extends JFrame {
                 .addGap(1, 1, 1))
         );
         
-         GameSt.jProgressBar1.setValue(98);
-
+    
         jMenu3.setText("Game");
         
         jMenuItem9.setText("Restart");

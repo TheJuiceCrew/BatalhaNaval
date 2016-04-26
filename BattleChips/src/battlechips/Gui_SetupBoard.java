@@ -412,7 +412,7 @@ public class Gui_SetupBoard extends JFrame  {
        
        
        
-       GameSt.jProgressBar1.setValue(60);
+
        
        
         //definição layout painel principal
