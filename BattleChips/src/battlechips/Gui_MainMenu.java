@@ -9,11 +9,13 @@ import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 /**
  *
  * @author berto
  */
-public class Gui_MainMenu extends JFrame {
+public class Gui_MainMenu extends JPanel {
     
     public int diffTemp = 2;
     public int diff = 2;
@@ -31,10 +33,11 @@ public class Gui_MainMenu extends JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JPanel settings;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -48,27 +51,37 @@ public class Gui_MainMenu extends JFrame {
         this.gameSt = gameSt;
     }
     
+    @Override
+    public void setVisible(boolean a) {
+        if (a==true) {
+            
+            //updateComponents();
+            
+            
+        }
+        
+        super.setVisible(a);
+    }
+    
     
     
     
     public void InitComponents() {
         
-        
-        URL url = this.getClass().getResource("/resources/CPUart.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-         this.setIconImage(imagemTitulo);
+        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setBackground(new java.awt.Color(76, 175, 80));
          
-         setLocation(100,100);
         
-        jFrame1 = new javax.swing.JFrame();
-        jFrame1.setUndecorated(true);
-         
-         jFrame1.setLocationRelativeTo(null);
+        settings = new javax.swing.JPanel();
         
-        jFrame1.setVisible(false);
+        
+        
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        painelPrincipal = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -81,11 +94,11 @@ public class Gui_MainMenu extends JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        jFrame1.setTitle("Settings");
-        jFrame1.setMinimumSize(new java.awt.Dimension(400, 300));
-        jFrame1.setResizable(false);
-
-        jPanel3.setBackground(new java.awt.Color(59, 174, 14));
+        
+        
+        painelPrincipal.setBackground(new java.awt.Color(76, 175, 80));
+        
+        jPanel3.setBackground(new java.awt.Color(76, 175, 80));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Settings_img.png"))); // NOI18N
 
@@ -216,8 +229,9 @@ public class Gui_MainMenu extends JFrame {
         
        
 
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(settings);
+        settings.setMaximumSize(new java.awt.Dimension(800, 600));
+        settings.setLayout(jFrame1Layout);
         jFrame1Layout.setHorizontalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -227,9 +241,7 @@ public class Gui_MainMenu extends JFrame {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 480));
-        setResizable(false);
+        
 
         jPanel2.setMaximumSize(new java.awt.Dimension(439, 480));
         jPanel2.setMinimumSize(new java.awt.Dimension(439, 480));
@@ -248,7 +260,7 @@ public class Gui_MainMenu extends JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(59, 174, 14));
+        jPanel1.setBackground(new java.awt.Color(76, 175, 80));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/New_Game.png"))); // NOI18N
         jButton1.setText("jButton1");
@@ -320,8 +332,9 @@ public class Gui_MainMenu extends JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(painelPrincipal);
+        painelPrincipal.setLayout(layout);
+        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -335,7 +348,7 @@ public class Gui_MainMenu extends JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        this.add(painelPrincipal);
         
     }
     
@@ -374,7 +387,10 @@ public class Gui_MainMenu extends JFrame {
         jButton6.setIcon((new ImageIcon("src/resources/Hard_Selected.PNG"))); 
         }
         
-         jFrame1.setVisible(true);
+        
+        painelPrincipal.setVisible(false);
+        this.add(settings);
+        
     }                                        
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -420,8 +436,7 @@ public class Gui_MainMenu extends JFrame {
         {
            
             gameSt.SetGameControler(new Game_controler(new Facil()));
-            gameSt.SetLoad();
-            gameSt.Alternar();
+            
             
             
         }
@@ -430,29 +445,33 @@ public class Gui_MainMenu extends JFrame {
         {
         
              gameSt.SetGameControler(new Game_controler(new Normal()));
-            gameSt.SetLoad();
-            gameSt.Alternar();
+            
         }
         
         else if (diff == 3)
         {
            
             gameSt.SetGameControler(new Game_controler(new Dificil()));
-            gameSt.SetLoad();
-            gameSt.Alternar();
+           
             
         } 
         
         
         }
         
-      jFrame1.setVisible(false);
+        
+        painelPrincipal.setVisible(true);
+        this.remove(settings);
+        
+        
     }                                        
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        jFrame1.setLocation(100, 100);
-        jFrame1.setVisible(false);
+        
+        painelPrincipal.setVisible(true);
+        this.remove(settings);
+        
     }                                        
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         

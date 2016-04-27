@@ -4,22 +4,16 @@
  * and open the template in the editor.
  */
 package battlechips;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 /**
  *
  * @author berto
  */
-public class Gui_GamePlay extends JFrame {
+public class Gui_GamePlay extends JPanel {
     
     Game_controler jogo;
     private Gui_TableBlock casasJog[][];
@@ -104,10 +98,18 @@ public class Gui_GamePlay extends JFrame {
     @Override
     public void setVisible (boolean a) {
         
-        if (a) {
+        if (a==true) {
+            
+            
+        if (jogo!=GameSt.GetGameControler())  {
+            System.out.println("Componentes atualizados");
+            updateCompnents();
+        }      
+            
         updateTables();
         VezJogador=true;
-        jogo.IiciarJogo(); 
+        jogo.IiciarJogo();
+        
         }
         
         super.setVisible(a);
@@ -116,9 +118,7 @@ public class Gui_GamePlay extends JFrame {
     
     public Gui_GamePlay (GameStarter game) {
         
-        URL url = this.getClass().getResource("/resources/CPUart.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-         this.setIconImage(imagemTitulo);
+        
         
         GameSt = game;
         this.jogo = game.GetGameControler();
@@ -156,8 +156,6 @@ public class Gui_GamePlay extends JFrame {
     
     public void InitComponents () {
         
-        
-        setLocation(100,100);
         
         
         //inicialização de variaveis
@@ -227,14 +225,14 @@ public class Gui_GamePlay extends JFrame {
         
         
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setResizable(false);
+        
 
         jPanel1.setBackground(new java.awt.Color(76, 175, 80));
 
-        infoCPU.setBackground(new java.awt.Color(46, 125, 50));
+        infoCPU.setBackground(new java.awt.Color(129, 199, 132));
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(244, 81, 30)));
         infoCPU.setMaximumSize(new java.awt.Dimension(793, 50));
         infoCPU.setMinimumSize(new java.awt.Dimension(793, 50));
@@ -446,8 +444,7 @@ public class Gui_GamePlay extends JFrame {
          }       
         }
       
-
-        infoUsuario.setBackground(new java.awt.Color(129, 199, 132));
+        infoUsuario.setBackground(new java.awt.Color(46, 125, 50));
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         infoUsuario.setMaximumSize(new java.awt.Dimension(793, 50));
         infoUsuario.setMinimumSize(new java.awt.Dimension(793, 50));
@@ -665,10 +662,10 @@ public class Gui_GamePlay extends JFrame {
 
         jMenuBar2.add(jMenu2);
 
-        setJMenuBar(jMenuBar2);
+        //setJMenuBar(jMenuBar2);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -680,11 +677,92 @@ public class Gui_GamePlay extends JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        
         
         updateTables();
         UpdatePlayerInfo();
     }
+    
+    
+    
+    public void updateCompnents() {
+        
+        this.jogo = GameSt.GetGameControler();
+        
+        Dificuldade = jogo.getDificuldade();
+        
+        int a,b;
+        
+        if (Dificuldade.DIFICULDADE == 3) {
+        a = 30;
+        b = 20; 
+        } else if (Dificuldade.DIFICULDADE == 2) {
+        a = 37;
+        b = 37; 
+        } else {
+        a = 37;
+        b = 37; 
+        }
+        
+        BlockSize = a;
+        UserBlockSize = b;
+        
+        casasJog = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
+        casasAdv = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
+        
+        
+        
+        java.awt.Dimension d = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*BlockSize)+5, (jogo.getDificuldade().TABSIZE*BlockSize)+5);
+        java.awt.GridLayout TabAdvLayout = new java.awt.GridLayout(jogo.getDificuldade().TABSIZE,jogo.getDificuldade().TABSIZE);
+        PainelAdversario.removeAll();
+        PainelAdversario.setLayout(TabAdvLayout);
+        PainelAdversario.setMaximumSize(d);
+        PainelAdversario.setMinimumSize(d);
+        PainelAdversario.setPreferredSize(d);
+        
+        
+        for (int i = 0; i<jogo.getDificuldade().TABSIZE; i++) {  
+         //alterncanci de coluna
+         for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
+             
+             Gui_TableBlock block = casasAdv[i][j] = new Gui_TableBlock(i+1,j+1,BlockSize);
+             block.addMouseListener(blockListener);
+             block.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/pressed-but.png")));
+             PainelAdversario.add(block);
+
+         }       
+     }
+        
+        PaunelUsuario.removeAll();
+        java.awt.Dimension d2 = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*UserBlockSize)+1, (jogo.getDificuldade().TABSIZE*UserBlockSize)+1);
+        java.awt.GridLayout TabJogLayout = new java.awt.GridLayout(jogo.getDificuldade().TABSIZE,jogo.getDificuldade().TABSIZE);
+        PaunelUsuario.setLayout(TabJogLayout);
+        PaunelUsuario.setMaximumSize(d2);
+        PaunelUsuario.setMinimumSize(d2);
+        PaunelUsuario.setPreferredSize(d2);
+
+        
+        
+        for (int i = 0; i<jogo.getDificuldade().TABSIZE; i++) {  
+         //alterncanci de coluna
+         for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
+             
+             Gui_TableBlock block = casasJog[i][j] = new Gui_TableBlock(i+1,j+1,UserBlockSize);
+             
+             PaunelUsuario.add(block);
+
+         }       
+        }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
     
     
     private void userTableEnabled(boolean enabled) {
@@ -792,9 +870,9 @@ public class Gui_GamePlay extends JFrame {
         
         userTableEnabled(false);
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
-        
+        infoCPU.setBackground(new java.awt.Color(46, 125, 50));
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
-        
+        infoUsuario.setBackground(new java.awt.Color(129, 199, 132));
         infoCPU.setSize(infoCPU.getWidth(),infoCPU.getHeight()+30);
         x = jogo.GetPlayer(1).getTable().getRandomPosition();
         y = jogo.GetPlayer(1).getTable().getRandomPosition();
@@ -850,8 +928,10 @@ public class Gui_GamePlay extends JFrame {
             cont=0;
         CpuAnimationTimer.stop();
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
+        infoCPU.setBackground(new java.awt.Color(129, 199, 132));
         userTableEnabled(true);
         infoUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
+        infoUsuario.setBackground(new java.awt.Color(46, 125, 50));
         
         VezCpu=false;
         VezJogador=true;
@@ -1020,7 +1100,8 @@ public class Gui_GamePlay extends JFrame {
          Gui_TableBlock block = (Gui_TableBlock) e.getSource();
          Block casa = jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2));
           if (!casa.IsShot()) { 
-          block.setIconChip(0, 1, 4);
+              
+              block.setIconChip(0, 1, 4);
           
           }
     }
@@ -1029,7 +1110,8 @@ public class Gui_GamePlay extends JFrame {
          Gui_TableBlock block = (Gui_TableBlock) e.getSource();
           Block casa = jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2));
           if (!casa.IsShot()) { 
-          block.setIconChip(0, 1, 1);
+              
+              block.setIconChip(0, 1, 1);
           
           }
                     

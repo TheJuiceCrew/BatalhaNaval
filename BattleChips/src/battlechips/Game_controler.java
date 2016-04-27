@@ -27,7 +27,7 @@ public class Game_controler {
     public Game_controler(Dificuldade dif) {
         
     this.Dificuldade = dif;
-        System.out.println("Jogo iniciado na dificuldade " + dif.DIFICULDADE);
+    System.out.println("Jogo iniciado na dificuldade " + dif.DIFICULDADE);
     jog1 = new Player(1,Dificuldade);
     cpu = new CPU(2,Dificuldade);
     PartidaIniciada = false;

@@ -1,6 +1,9 @@
 
 
 package battlechips;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.JFrame;
 
 /*
@@ -17,7 +20,7 @@ public class BattleChips {
     
     
     private GameStarter GameStarter; //instância de GameStarter
- 
+    private JFrame JanelaPrincipal;
                 
     private javax.swing.JLabel LogoTJC; //logotipo the juice Crew
     private javax.swing.JProgressBar barraDeProgressLoading; //barra de progresso da tela de carregamento
@@ -47,7 +50,17 @@ public class BattleChips {
         barraDeProgressLoading = new javax.swing.JProgressBar();
         LogoTJC = new javax.swing.JLabel();
         Loading = new javax.swing.JFrame();
+        Loading.setLocationRelativeTo(null);
+        JanelaPrincipal = new JFrame();
         
+        URL url = this.getClass().getResource("/resources/CPUart.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        JanelaPrincipal.setIconImage(imagemTitulo);
+        JanelaPrincipal.setLayout(new java.awt.FlowLayout());
+        JanelaPrincipal.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        JanelaPrincipal.setMaximumSize(new java.awt.Dimension(800, 600));
+        JanelaPrincipal.setMinimumSize(new java.awt.Dimension(800, 600));
+        JanelaPrincipal.setResizable(false);
     }
     
     
@@ -128,14 +141,15 @@ public class BattleChips {
             Loading.setVisible(true);
 
             
-            //inicia os componentes nas outras janelas do jogo
-            GuiMainMenu.InitComponents();      
+            GuiMainMenu.InitComponents();
             GuiSetupBoard.InitComponents();
             GuiGamePlay.InitComponents();
             
-            
             //desativa o estado de load
             GameStarter.Load = false;
+            
+            JanelaPrincipal.setVisible(true);
+            
             //ativa o estado para o menu principal
             GameStarter.SetMainMenu();
         
@@ -152,6 +166,9 @@ public class BattleChips {
         
         
         //exibe a janela de menu
+        JanelaPrincipal.setContentPane(GuiMainMenu);
+        
+        
         GuiMainMenu.setVisible(true);
         GameStarter.mainMenu = false;
         
@@ -166,6 +183,8 @@ public class BattleChips {
         if (GuiGamePlay.isVisible())  GuiGamePlay.setVisible(false);
     
         //exibe a janela de setup
+        JanelaPrincipal.setContentPane(GuiSetupBoard);
+        
         GuiSetupBoard.setVisible(true);
         GameStarter.setup = false;
     
@@ -181,6 +200,7 @@ public class BattleChips {
         if (GuiSetupBoard.isVisible())  GuiSetupBoard.setVisible(false);
    
         //exibe a janela de gameplay
+        JanelaPrincipal.setContentPane(GuiGamePlay);
         GuiGamePlay.setVisible(true);
         GameStarter.StartGame = false;
         

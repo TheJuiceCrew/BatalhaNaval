@@ -12,7 +12,7 @@ import java.awt.Image;
  *
  * @author berto
  */
-public class Gui_TableBlock extends javax.swing.JButton {
+public final class Gui_TableBlock extends javax.swing.JButton {
     
     private int position[] = new int[2];
     private int Size;
@@ -20,11 +20,9 @@ public class Gui_TableBlock extends javax.swing.JButton {
     
     
     //variaveis imageIcon para os icones das casas de acordo com o chip e a orientação
-    private ImageIcon Icons[][] = new ImageIcon[9][5];
+    private static ImageIcon Icons[][] = new ImageIcon[9][5];
     
-    
-    
-    
+  
     
     
     
@@ -42,7 +40,9 @@ public class Gui_TableBlock extends javax.swing.JButton {
         else return 0;
     }
     
-    
+    /**
+     *
+     */
     public void initComponent() {
         
         
@@ -83,7 +83,8 @@ public class Gui_TableBlock extends javax.swing.JButton {
         setMaximumSize(Bsize);
         setMinimumSize(Bsize);
         setPreferredSize(Bsize);
-        //setFocusable(false);
+        
+        setFocusable(false);
         setBorderPainted(false);
         
         

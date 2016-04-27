@@ -5,6 +5,7 @@
  */
 package battlechips;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
@@ -19,7 +20,7 @@ import javax.swing.JFrame;
  *
  * @author berto
  */
-public class Gui_SetupBoard extends JFrame  {
+public class Gui_SetupBoard extends JPanel  {
     
     
     private Game_controler jogo;
@@ -58,7 +59,7 @@ public class Gui_SetupBoard extends JFrame  {
     private JButton editar;
     private JButton salvar;
     private JButton IniciarJogo;
-    
+    java.awt.event.MouseListener blockListener;
     private GameStarter GameSt;
     
             
@@ -81,7 +82,6 @@ public class Gui_SetupBoard extends JFrame  {
         
         
        int a;
-        
         if (Dificuldade.DIFICULDADE == 3) {
         a = 30;
         
@@ -89,15 +89,12 @@ public class Gui_SetupBoard extends JFrame  {
         a = 37;
         
         } else {
-        a = 37;
+        a = 27;
         
         }
         
         BlockSize = a;
-        
-        
-        InitComponents();
-    
+   
     }        
     
     
@@ -105,11 +102,15 @@ public class Gui_SetupBoard extends JFrame  {
     public void setVisible (boolean a) {
         
         if (a==true) {
-        jogo = GameSt.GetGameControler();
+           
+        
+        if (jogo!=GameSt.GetGameControler())  {
+            updateCompnents();
+        }  
+            
+            
         OrientationSet = 1;
         TipoChipSet = 0;
-        Dificuldade = jogo.getDificuldade();
-        tabAux = new Table(Dificuldade);
         TaplePaste();
         updateButtons();
         updateNums();
@@ -118,6 +119,7 @@ public class Gui_SetupBoard extends JFrame  {
         UpdateTable();
         TableEnabled(true);
         jogo.NewGame();
+        
         
         }
         
@@ -129,23 +131,12 @@ public class Gui_SetupBoard extends JFrame  {
     //inicia o componente
     public void InitComponents() {
         
-        
-        
-        
-        
-        URL url = this.getClass().getResource("/resources/CPUart.png");
-        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
-         this.setIconImage(imagemTitulo);
-         
-         setLocation(100,100);
-         
-         
-         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        
+     
      
         //painel principal criação
         PainelPrincipal = new JPanel();
-        PainelPrincipal.setBackground(new java.awt.Color(59, 174, 14));
+        PainelPrincipal.setBackground(new java.awt.Color(76, 175, 80));
+        this.setBackground(new java.awt.Color(76, 175, 80));
       
      
         //titulo criação
@@ -361,7 +352,7 @@ public class Gui_SetupBoard extends JFrame  {
         tabuleiro.setLayout(TabLayout);
         
         
-        java.awt.event.MouseListener blockListener = new java.awt.event.MouseListener() {
+        blockListener = new java.awt.event.MouseListener() {
 
                  @Override
                  public void mouseClicked(MouseEvent e) {
@@ -404,16 +395,10 @@ public class Gui_SetupBoard extends JFrame  {
      }
         
        //inicialização de componentes
-       setSize(tabuleiro.getWidth()+300,tabuleiro.getHeight()+200);
+       setSize(800,600);
        
        
-       
-       
-       
-       
-       
-
-       
+ 
        
         //definição layout painel principal
   javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(PainelPrincipal);
@@ -469,7 +454,7 @@ public class Gui_SetupBoard extends JFrame  {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(IniciarJogo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 382, Short.MAX_VALUE)
+                        .addGap(0, 250, Short.MAX_VALUE)
                         .addComponent(tabuleiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
@@ -514,17 +499,67 @@ public class Gui_SetupBoard extends JFrame  {
                 .addGap(37, 37, 37))
         );
         
-        //GameSt.jProgressBar1.setValue(70);
+       
         
-        setResizable(false);
-        
-        javax.swing.GroupLayout SetPosition_EasyLayout = new javax.swing.GroupLayout(getContentPane());
-        setResizable(false);
-        setContentPane(PainelPrincipal);
-        updateButtons();
-        
-        //setVisible(true);
+        javax.swing.GroupLayout SetPosition_EasyLayout = new javax.swing.GroupLayout(this); 
+        this.add(PainelPrincipal);
+      
     }
+    
+    
+    private void updateCompnents() {
+        
+        
+        jogo = GameSt.GetGameControler();
+        Dificuldade = jogo.getDificuldade();
+        tabAux = new Table(Dificuldade);
+        
+        nButtonRest = Dificuldade.N_CHIP1;
+        nResistRest = Dificuldade.N_CHIP2;
+        nDecodRest = Dificuldade.N_CHIP3;
+        nMicroRest = Dificuldade.N_CHIP4;
+        
+        int a;
+        if (Dificuldade.DIFICULDADE == 3) {
+        a = 25;
+        
+        } else if (Dificuldade.DIFICULDADE == 2) {
+        a = 37;
+        
+        } else {
+        a = 37;
+        
+        }
+        
+        BlockSize = a;
+        
+        casas = new Gui_TableBlock[Dificuldade.TABSIZE][Dificuldade.TABSIZE];
+        tabAux = new Table(Dificuldade);
+        
+        tabuleiro.removeAll();
+        java.awt.Dimension d = new java.awt.Dimension((jogo.getDificuldade().TABSIZE*BlockSize)+5, (jogo.getDificuldade().TABSIZE*BlockSize)+5);
+        tabuleiro.setSize(d);
+        java.awt.GridLayout TabLayout = new java.awt.GridLayout(jogo.getDificuldade().TABSIZE,jogo.getDificuldade().TABSIZE);
+        tabuleiro.setLayout(TabLayout);
+        
+        
+        //alternancia de linha
+        for (int i = 0; i<jogo.getDificuldade().TABSIZE; i++) {  
+         //alterncanci de coluna
+         for (int j = 0; j<jogo.getDificuldade().TABSIZE; j++) {
+             
+             JButton b = casas[i][j] = new Gui_TableBlock(i+1,j+1,BlockSize);
+             b.addMouseListener(blockListener);
+             tabuleiro.add(b);
+
+         }       
+     }
+        
+        
+        
+    }
+    
+    
     
     
     
@@ -539,12 +574,7 @@ public class Gui_SetupBoard extends JFrame  {
                    ChipMove.getPiece(0).getPosition(1), 
                    ChipMove.getPiece(0).getPosition(2),
                    ChipMove.getTipo());
-           
-           
-           
-           
-            
-             
+        
      }
     }
     
