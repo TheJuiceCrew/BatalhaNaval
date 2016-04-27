@@ -38,6 +38,10 @@ public class Game_controler {
         return Dificuldade;
     }
     
+    public Player getWinner() {
+        return winner;
+    }
+    
     
     public void RestartGame() {
         

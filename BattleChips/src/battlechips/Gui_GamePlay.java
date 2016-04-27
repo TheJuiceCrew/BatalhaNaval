@@ -60,18 +60,7 @@ public class Gui_GamePlay extends JPanel {
     private javax.swing.JLabel nResistCpu;
     private javax.swing.JLabel nDecodCpu;
     private javax.swing.JLabel nMicroCpu;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JMenuItem jMenuItem10;
+   
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel infoUsuario;
     private javax.swing.JPanel infoCPU;
@@ -85,6 +74,14 @@ public class Gui_GamePlay extends JPanel {
     private javax.swing.JPanel imgResistPlayer;
     private javax.swing.JPanel imgDecodPlayer;
     private javax.swing.JPanel imgMicroPlayer;
+    private javax.swing.JLabel ImgWinner;
+    private javax.swing.JButton MenuButton;
+    private javax.swing.JButton NewGameButton;
+    private javax.swing.JPanel PainelFimJogo;
+    private javax.swing.JButton RestartButton;
+    private javax.swing.JLabel WinnerAnnouncer;
+    private javax.swing.JLabel GameOver;
+    private javax.swing.JFrame GameOverMessage;
     private javax.swing.JLabel x1,x2,x3,x4,x5,x6;
     private Timer CpuAnimationTimer;
     
@@ -186,18 +183,7 @@ public class Gui_GamePlay extends JPanel {
         nUserMisses = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         nUserChipsDestroyed = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+      
         nbotaoUsu = new javax.swing.JLabel();
         nResistUsu = new javax.swing.JLabel();
         nDecodUsu = new javax.swing.JLabel();
@@ -222,7 +208,102 @@ public class Gui_GamePlay extends JPanel {
        x5 = new javax.swing.JLabel();
        x6 = new javax.swing.JLabel();
         
+        PainelFimJogo = new javax.swing.JPanel();
+        GameOver = new javax.swing.JLabel();
+        WinnerAnnouncer = new javax.swing.JLabel();
+        RestartButton = new javax.swing.JButton();
+        ImgWinner = new javax.swing.JLabel();
+        NewGameButton = new javax.swing.JButton();
+        MenuButton = new javax.swing.JButton();
+        GameOverMessage = new javax.swing.JFrame();
         
+
+        PainelFimJogo.setBackground(new java.awt.Color(0, 204, 102));
+
+        GameOver.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        GameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        GameOver.setText("Game Over!");
+
+        WinnerAnnouncer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        WinnerAnnouncer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        WinnerAnnouncer.setText("Player Wins!");
+
+        RestartButton.setText("Restart Game");
+        RestartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RestartButtonActionPerformed(evt);
+            }
+        });
+
+        ImgWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/CPUart.png"))); // NOI18N
+        ImgWinner.setToolTipText("");
+        ImgWinner.setMaximumSize(new java.awt.Dimension(70, 70));
+        ImgWinner.setMinimumSize(new java.awt.Dimension(70, 70));
+        ImgWinner.setPreferredSize(new java.awt.Dimension(70, 70));
+
+        NewGameButton.setText("NewGame");
+        NewGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewGameButtonActionPerformed(evt);
+            }
+        });
+
+        MenuButton.setText("Main Menu");
+        MenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PainelFimJogoLayout = new javax.swing.GroupLayout(PainelFimJogo);
+        PainelFimJogo.setLayout(PainelFimJogoLayout);
+        PainelFimJogoLayout.setHorizontalGroup(
+            PainelFimJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelFimJogoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(GameOver, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelFimJogoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ImgWinner, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(328, 328, 328))
+            .addComponent(WinnerAnnouncer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PainelFimJogoLayout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(RestartButton)
+                .addGap(44, 44, 44)
+                .addComponent(NewGameButton)
+                .addGap(33, 33, 33)
+                .addComponent(MenuButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PainelFimJogoLayout.setVerticalGroup(
+            PainelFimJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelFimJogoLayout.createSequentialGroup()
+                .addComponent(GameOver, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ImgWinner, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(WinnerAnnouncer, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PainelFimJogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RestartButton)
+                    .addComponent(NewGameButton)
+                    .addComponent(MenuButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout2 = new javax.swing.GroupLayout(GameOverMessage.getContentPane());
+        GameOverMessage.getContentPane().setLayout(layout2);
+        layout2.setHorizontalGroup(
+            layout2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PainelFimJogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout2.setVerticalGroup(
+            layout2.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PainelFimJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        GameOverMessage.pack(); 
         
 
         
@@ -580,89 +661,7 @@ public class Gui_GamePlay extends JPanel {
         );
         
     
-        jMenu3.setText("Game");
         
-        jMenuItem9.setText("Restart");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-                jogo.RestartGame();
-                updateTables();
-                UpdatePlayerInfo();
-                jogo.IiciarJogo(); 
-            }
-        });
-        
-        jMenu3.add(jMenuItem9);
-        
-        jMenuItem10.setText("EditTable");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-                
-                updateTables();
-                UpdatePlayerInfo();
-                GameSt.SetSetup();
-                GameSt.Alternar();   
-            }
-        });
-        
-        jMenu3.add(jMenuItem10);
-
-        jMenuItem1.setText("New Game");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
-                GameSt.NewGame();
-                GameSt.SetSetup();
-                GameSt.Alternar();
-                
-            }
-        });
-        jMenu3.add(jMenuItem1);
-
-        jMenuItem8.setText("Return to Main Menu");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GameSt.SetMainMenu();
-                GameSt.NewGame();
-                GameSt.Alternar();
-            }
-        });
-        jMenu3.add(jMenuItem8);
-
-        jMenuItem2.setText("Exit");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GameSt.ExitGame();
-                
-                GameSt.Alternar();
-                
-                
-            }
-        });
-        jMenu3.add(jMenuItem2);
-
-        jMenuBar2.add(jMenu3);
-
-        jMenu1.setText("Config");
-
-        jMenuItem3.setText("Volume");
-        jMenu1.add(jMenuItem3);
-
-        jMenuBar2.add(jMenu1);
-
-        jMenu2.setText("Help");
-
-        jMenuItem6.setText("Help Contents");
-        jMenu2.add(jMenuItem6);
-
-        jMenuItem7.setText("About");
-        jMenu2.add(jMenuItem7);
-
-        jMenuBar2.add(jMenu2);
-
-        //setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -924,9 +923,10 @@ public class Gui_GamePlay extends JPanel {
         }
         else {
             CpuAnimationTimer.setDelay(CpuAnimationTimer.getInitialDelay());
-            updateTables();
+            UpdateOneBlockCpu (temp);
             cont=0;
         CpuAnimationTimer.stop();
+        CheckGameOver();
         infoCPU.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 1));
         infoCPU.setBackground(new java.awt.Color(129, 199, 132));
         userTableEnabled(true);
@@ -1064,10 +1064,7 @@ public class Gui_GamePlay extends JPanel {
     private void BlockTableAdvReleased(java.awt.event.MouseEvent evt) {
         
         
-        if (jogo.ChecarFimDeJogo()) {
-             RevealUserTableBlock();
-             userTableEnabled(false);
-        }
+        
         
     }
     
@@ -1080,19 +1077,46 @@ public class Gui_GamePlay extends JPanel {
           if (!casa.IsShot()) { 
               
                   jogo.PlayerShoot(block.getPosition(1), block.getPosition(2));
+                  
+                  if (jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2))
+                          .getChipPiece()!=null) {
+                  if (jogo.GetPlayer(2).getTable().VerificarBloco(block.getPosition(1), block.getPosition(2))
+                          .getChipPiece().getChip().checkCrached()) {
+                      GameSt.playButtonClick();
+                  }
+                  }
                   UpdateOneBlockUser(block);
                   UpdatePlayerInfo();
                   CpuAnimationTimer.start();
                   
                   VezJogador=false;
                   
-           
+           CheckGameOver();
           }
           
           }
        }
     }
     
+    
+    public void CheckGameOver() {
+        if (jogo.ChecarFimDeJogo()) {
+            String name;
+             RevealUserTableBlock();
+             if(jogo.getWinner().getID()==1) {
+                 name = "Player";
+                 ImgWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/usericon.png")));
+                 
+             } else {
+                 name = "CPU";
+                 ImgWinner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/CPUart.png")));
+             }
+                 
+             WinnerAnnouncer.setText(name + " Wins!");
+             GameOverMessage.setVisible(true);
+             userTableEnabled(false);
+        }
+    }
     
     
     
@@ -1116,6 +1140,32 @@ public class Gui_GamePlay extends JPanel {
           }
                     
     }
+    
+    
+    
+    private void RestartButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+                jogo.RestartGame();
+                updateTables();
+                UpdatePlayerInfo();
+                jogo.IiciarJogo(); 
+                GameOverMessage.setVisible(false);
+    }                                             
+
+    private void NewGameButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
+                GameSt.NewGame();
+                GameSt.SetSetup();
+                GameSt.Alternar();
+                GameOverMessage.setVisible(false);
+    }                                             
+
+    private void MenuButtonActionPerformed(java.awt.event.ActionEvent evt) {                                           
+                GameSt.SetMainMenu();
+                GameSt.NewGame();
+                GameSt.Alternar();
+                GameOverMessage.setVisible(false);
+    }         
+    
+    
     
     
 }

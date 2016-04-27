@@ -32,7 +32,18 @@ public class BattleChips {
     private Gui_SetupBoard GuiSetupBoard; //janela de montagem de placa
     private Gui_GamePlay GuiGamePlay; //janela de jogo
     
-    
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItem10;
     
     
     //contrutor da classe principal;
@@ -55,6 +66,9 @@ public class BattleChips {
         
         URL url = this.getClass().getResource("/resources/CPUart.png");
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        JanelaPrincipal.setTitle("BattleChips");
+        JanelaPrincipal.setLocationRelativeTo(null);
+        
         JanelaPrincipal.setIconImage(imagemTitulo);
         JanelaPrincipal.setLayout(new java.awt.FlowLayout());
         JanelaPrincipal.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -145,6 +159,104 @@ public class BattleChips {
             GuiSetupBoard.InitComponents();
             GuiGamePlay.InitComponents();
             
+            
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+            
+            jMenu3.setText("Game");
+        
+        jMenuItem9.setText("Restart");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                GameStarter.GetGameControler().RestartGame();
+                GuiGamePlay.setVisible(true);
+                 
+            }
+        });
+        
+        jMenu3.add(jMenuItem9);
+        
+        jMenuItem10.setText("EditTable");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                
+                
+                GameStarter.SetSetup();
+                GameStarter.Alternar();   
+            }
+        });
+        
+        jMenu3.add(jMenuItem10);
+
+        jMenuItem1.setText("New Game");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                
+                GameStarter.GetGameControler().NewGame();
+                GameStarter.SetSetup();
+                GameStarter.Alternar();
+                
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem8.setText("Return to Main Menu");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameStarter.SetMainMenu();
+                GameStarter.GetGameControler().NewGame();
+                GameStarter.Alternar();
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem2.setText("Exit");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameStarter.ExitGame();
+                
+                GameStarter.Alternar();
+                
+                
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu1.setText("Config");
+
+        jMenuItem3.setText("Volume");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Help");
+
+        jMenuItem6.setText("Help Contents");
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setText("About");
+        jMenu2.add(jMenuItem7);
+
+        jMenuBar2.add(jMenu2);
+
+        JanelaPrincipal.setJMenuBar(jMenuBar2);
+        jMenuBar2.setEnabled(false);
+            
+            
             //desativa o estado de load
             GameStarter.Load = false;
             
@@ -168,6 +280,7 @@ public class BattleChips {
         //exibe a janela de menu
         JanelaPrincipal.setContentPane(GuiMainMenu);
         
+        jMenuBar2.setVisible(false);
         
         GuiMainMenu.setVisible(true);
         GameStarter.mainMenu = false;
@@ -184,7 +297,7 @@ public class BattleChips {
     
         //exibe a janela de setup
         JanelaPrincipal.setContentPane(GuiSetupBoard);
-        
+        jMenuBar2.setVisible(false);
         GuiSetupBoard.setVisible(true);
         GameStarter.setup = false;
     
@@ -200,6 +313,7 @@ public class BattleChips {
         if (GuiSetupBoard.isVisible())  GuiSetupBoard.setVisible(false);
    
         //exibe a janela de gameplay
+        jMenuBar2.setVisible(true);
         JanelaPrincipal.setContentPane(GuiGamePlay);
         GuiGamePlay.setVisible(true);
         GameStarter.StartGame = false;

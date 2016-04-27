@@ -108,7 +108,7 @@ public class Gui_SetupBoard extends JPanel  {
             updateCompnents();
         }  
             
-            
+        tabAux = new Table(Dificuldade);    
         OrientationSet = 1;
         TipoChipSet = 0;
         TaplePaste();

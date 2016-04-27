@@ -8,6 +8,7 @@ package battlechips;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+
 /**
  *
  * @author berto
@@ -29,13 +30,12 @@ public class GameStarter {
     
     
     private Game_controler game;
-    private BattleChips B;
-    //private final AudioClip BotaoSom =  Applet.newAudioClip(GameStarter.class.getResource("/music1.mid"));
-	
+    private BattleChips BAttleChips;
+    private final AudioClip BotaoSom = Applet.newAudioClip(GameStarter.class.getResource("/resources/Musics/Click/BobbyHome-Jump.mid"));
     
     
-    public GameStarter(BattleChips c) {
-        B=c;
+    public GameStarter(BattleChips main) {
+        BAttleChips=main;
        SetGameControler(new Game_controler(new Normal()));
        ExitGame=false;
        mainMenu=false;
@@ -45,7 +45,7 @@ public class GameStarter {
     }
     
     public void Alternar () {
-        B.Alternar();
+        BAttleChips.Alternar();
     }
     
     public void SetGameControler(Game_controler game) {
@@ -110,7 +110,10 @@ public class GameStarter {
     }
     
     
-    
+    public void playButtonClick() {
+        
+        BotaoSom.play();
+    }
     
     
     
